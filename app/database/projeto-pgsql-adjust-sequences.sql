@@ -1,0 +1,11 @@
+SELECT setval('alternativa_id_seq', coalesce(max(id),0) + 1, false) FROM alternativa;
+SELECT setval('alternativa_resposta_questao_id_seq', coalesce(max(id),0) + 1, false) FROM alternativa_resposta_questao;
+SELECT setval('grupo_id_seq', coalesce(max(id),0) + 1, false) FROM grupo;
+SELECT setval('grupo_prova_id_seq', coalesce(max(id),0) + 1, false) FROM grupo_prova;
+SELECT setval('grupo_usuario_id_seq', coalesce(max(id),0) + 1, false) FROM grupo_usuario;
+SELECT setval('prova_id_seq', coalesce(max(id),0) + 1, false) FROM prova;
+SELECT setval('questao_id_seq', coalesce(max(id),0) + 1, false) FROM questao;
+SELECT setval('questao_usuario_prova_id_seq', coalesce(max(id),0) + 1, false) FROM questao_usuario_prova;
+SELECT setval('resposta_id_seq', coalesce(max(id),0) + 1, false) FROM resposta;
+SELECT setval('usuario_id_seq', coalesce(max(id),0) + 1, false) FROM usuario;
+SELECT setval('usuario_prova_id_seq', coalesce(max(id),0) + 1, false) FROM usuario_prova;

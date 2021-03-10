@@ -1,0 +1,13 @@
+[10-Mar-2021 14:41:33 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function curl_init() in /var/www/html/prova_online/app/service/builder/BuilderPageService.php:136
+Stack trace:
+#0 /var/www/html/prova_online/app/service/builder/BuilderPageService.php(17): BuilderPageService::checkExternalUrl('https://manager...')
+#1 [internal function]: BuilderPageService::editPage(Array)
+#2 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(69): call_user_func(Array, Array)
+#3 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#4 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#5 {main}
+  thrown in /var/www/html/prova_online/app/service/builder/BuilderPageService.php on line 136
+[10-Mar-2021 14:50:59 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'AdiantiMenu' not found in /var/www/html/prova_online/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/prova_online/index.php on line 15
