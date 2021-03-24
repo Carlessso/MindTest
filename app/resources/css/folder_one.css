@@ -1,0 +1,130 @@
+body{
+    margin: 0px
+}
+
+.panel-top{
+    height: auto;
+    background: #15202B;
+    display: flex;
+    position: fixed; width: 100%;
+    cursor: pointer;
+}
+
+.panel-top-heigth{
+    height: 95px; 
+    visibility:hidden
+}
+
+.panel-definitions{
+    width: 100%;
+}
+
+.panel-title{
+    font-family: Roboto;
+    font-size: 30px;
+    color: aliceblue;
+    padding: 15px 0 0 35px;
+}
+
+.panel-subtitle{
+    font-family: Roboto;
+    font-size: 20px;
+    line-height: 25px;
+    color: #FFFFFF;
+    padding: 10px 0 15px 35px
+}
+
+.panel-pessoa{
+    font-size: 70px;
+    color: #FFFFFF;
+    margin: auto 35px;
+    cursor: pointer;
+}
+
+.panel-pessoa:hover{
+    transition: 0.3s;
+    transform: scale(1.05);
+}
+
+.panel-back-arrow{
+    margin: 20px 35px;
+    font-size: 35px;
+    color: #15202b;
+    position: fixed;
+    cursor: pointer;
+}
+
+.panel-back-arrow:hover{
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+.panel-body{
+    margin: 0px 18%;
+}
+
+.panel-question{
+    display: flex;
+}
+
+.question-div{
+    margin: 30px 30px 0 30px;
+    height: 220px;
+    display: flex;
+    background: #15202b;
+    border-radius: 4px;
+    width: 95%;
+    height: calc(100vw * 0.13);
+}
+
+.question-div:hover{
+    transition: 0.3s;
+    transform: scale(1.005);
+}
+
+.question-button-select{
+    height: 140px;
+    width: 150px;
+    background: #63ccff;
+    border-radius: 5px;
+    height: calc(100vw * 0.08);
+    width: calc(100vw * 0.09);
+    cursor: pointer;
+}
+.question-button-select:hover{
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.button-left{
+    margin: auto 10% auto auto;
+}
+
+.button-right{
+    margin: auto auto auto 10%;
+}
+
+.question-select-image{
+    height: calc(100vw * 0.08);
+    width: calc(100vw * 0.09);
+}
+
+.question-action-div{
+    background: #15202b;
+    height: 35px;width: 35px;
+    margin-top: 7px;
+    border-radius: 3px;
+    display: flex;
+    color: white;
+}
+
+.question-action{
+    margin: auto;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.question-action-div:hover{
+    transition: 0.1s;
+    box-shadow: 0 0 0px 1px #15202b;
+}

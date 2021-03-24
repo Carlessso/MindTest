@@ -190,23 +190,29 @@ class ProvaHeaderList extends TPage
         $panel->add($headerActions);
         $panel->add($this->datagrid_form);
 
-        $button_cadastrar = new TButton('button_button_cadastrar');
-        $button_cadastrar->setAction(new TAction(['ProvaForm', 'onShow']), "Cadastrar");
-        $button_cadastrar->addStyleClass('');
-        $button_cadastrar->setImage('fas:plus #69aa46');
-        $this->datagrid_form->addField($button_cadastrar);
+        // $button_cadastrar = new TButton('button_button_cadastrar');
+        // $button_cadastrar->setAction(new TAction(['ProvaForm', 'onShow']), "Cadastrar");
+        // $button_cadastrar->addStyleClass('');
+        // $button_cadastrar->setImage('fas:plus #69aa46');
+        // $this->datagrid_form->addField($button_cadastrar);
 
+        $button_cadastrar_prova = new TButton('button_button_cadastrar_form');
+        $button_cadastrar_prova->setAction(new TAction(['ProvaFormView', 'onView']), "Prova tela final");
+        $button_cadastrar_prova->addStyleClass('');
+        $button_cadastrar_prova->setImage('fas:plus #69aa46');
+        $this->datagrid_form->addField($button_cadastrar_prova);
+        
         $dropdown_button_exportar = new TDropDown("Exportar", 'fas:file-export #2d3436');
         $dropdown_button_exportar->setPullSide('right');
         $dropdown_button_exportar->setButtonClass('btn btn-default waves-effect dropdown-toggle');
         $dropdown_button_exportar->addPostAction( "CSV", new TAction(['ProvaHeaderList', 'onExportCsv']), 'datagrid_'.self::$formName, 'fas:table #00b894' );
         $dropdown_button_exportar->addPostAction( "PDF", new TAction(['ProvaHeaderList', 'onExportPdf']), 'datagrid_'.self::$formName, 'far:file-pdf #e74c3c' );
         $dropdown_button_exportar->addPostAction( "XML", new TAction(['ProvaHeaderList', 'onExportXml']), 'datagrid_'.self::$formName, 'far:file-code #95a5a6' );
-
-        $head_left_actions->add($button_cadastrar);
-
+        
+        $head_left_actions->add($button_cadastrar_prova);
+        
         $head_right_actions->add($dropdown_button_exportar);
-
+        
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
