@@ -39,10 +39,10 @@
         <icon>far:circle fa-fw </icon>
         <action>AlternativaHeaderList#method=onShow</action>
       </menuitem>
-      <menuitem label="Questao usuario provas">
+      <!-- <menuitem label="Questao usuario provas">
         <icon>far:circle fa-fw </icon>
         <action>QuestaoUsuarioProvaHeaderList#method=onShow</action>
-      </menuitem>
+      </menuitem> -->
       <menuitem label="Alternativas Questao">
         <icon>far:circle fa-fw </icon>
         <action>AlternativaRespostaQuestaoHeaderList#method=onShow</action>

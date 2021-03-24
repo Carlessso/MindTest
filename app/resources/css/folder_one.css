@@ -2,11 +2,17 @@ body{
     margin: 0px
 }
 
+.container-panel-top{
+    position: fixed;
+    align-items: center;
+    width: 100%;
+}
+
 .panel-top{
     height: auto;
     background: #15202B;
     display: flex;
-    position: fixed; width: 100%;
+    width: 72%;
     cursor: pointer;
 }
 
@@ -127,4 +133,30 @@ body{
 .question-action-div:hover{
     transition: 0.1s;
     box-shadow: 0 0 0px 1px #15202b;
+}
+
+.panel-top-form{
+    display: none; 
+    height: 320px; 
+    background-color: 15202b; 
+    border-top: solid 6px #ffffff2e;
+}
+
+@media only screen and (max-width: 960px) {
+    .panel-top{
+        width: 90%;
+    }
+
+    .panel-top-form{
+        height: 100px;
+        display: block;
+    }
+
+    .panel-back-arrow{
+        margin: 20px 5px;
+    }
+
+    .panel-body{
+        margin: 0px 5%;
+    }
 }
