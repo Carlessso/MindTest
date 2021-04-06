@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
+  <menuitem label="Geral">
+    <icon>fas:circle fa-fw</icon>
+    <menu>
+      <menuitem label="Prova Professor">
+        <icon>far:circle fa-fw </icon>
+        <action>ProvaFormView#method=onView</action>
+      </menuitem>
+    </menu>
+  </menuitem>
   <menuitem label="Cadastros">
     <icon>fas:circle fa-fw</icon>
     <menu>
