@@ -11,3 +11,4 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /var/www/html/prova_online/index.php on line 15
+[09-Apr-2021 22:38:13 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type bool in /var/www/html/MindTest/lib/adianti/database/TRepository.php on line 556

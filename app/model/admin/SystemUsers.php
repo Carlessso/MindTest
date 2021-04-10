@@ -11,7 +11,7 @@
  */
 class SystemUsers extends TRecord
 {
-    const TABLENAME = 'system_user';
+    const TABLENAME = 'usuario_sistema';
     const PRIMARYKEY= 'id';
     const IDPOLICY =  'max'; // {max, serial}
     

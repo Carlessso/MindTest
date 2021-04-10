@@ -43,7 +43,6 @@ class TConnection
             // if the database doesn't exists, throws an exception
             throw new Exception(AdiantiCoreTranslator::translate('File not found') . ': ' ."'{$database}.ini'");
         }
-        
         return self::openArray( $dbinfo );
     }
     
