@@ -4,6 +4,11 @@ $theme  = $ini['general']['theme'];
 $class  = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
 $public = in_array($class, $ini['permission']['public_classes']);
 
+if (in_array($class, $ini['permission']['main_classes'])) 
+{
+    $theme = 'prova';
+}
+
 // AdiantiCoreApplication::setRouter(array('AdiantiRouteTranslator', 'translate'));
 
 new TSession;
@@ -29,8 +34,8 @@ else
     }
 }
 
-$content = AdiantiTemplateParser::parse($content);
-$content = BuilderTemplateParser::parse($content);
+$content = AdiantiTemplateParser::parse($content, $theme);
+$content = BuilderTemplateParser::parse($content, $theme);
 $content = ApplicationTranslator::translateTemplate($content);
 
 echo $content;

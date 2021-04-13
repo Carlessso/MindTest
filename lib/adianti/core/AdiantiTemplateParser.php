@@ -21,10 +21,10 @@ class AdiantiTemplateParser
      * Parse template and replace basic system variables
      * @param $content raw template
      */
-    public static function parse($content)
+    public static function parse($content, $theme = NULL)
     {
         $ini       = AdiantiApplicationConfig::get();
-        $theme     = $ini['general']['theme'];
+        $theme     = $theme ? $theme : $ini['general']['theme'];
         $libraries = file_get_contents("app/templates/{$theme}/libraries.html");
         $class     = isset($_REQUEST['class']) ? $_REQUEST['class'] : '';
         

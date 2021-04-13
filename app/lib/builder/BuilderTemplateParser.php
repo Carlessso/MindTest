@@ -6,10 +6,10 @@ class BuilderTemplateParser
      * Parse template and replace basic system variables
      * @param $content raw template
      */
-    public static function parse($content)
+    public static function parse($content, $theme = NULL)
     {
         $ini = AdiantiApplicationConfig::get();
-        $theme = $ini['general']['theme'];
+        $theme = $theme ? $theme : $ini['general']['theme'];
         $has_left_menu = false;
         $has_top_menu = false;
         $top_menu_var = 'false';
