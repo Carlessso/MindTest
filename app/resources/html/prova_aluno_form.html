@@ -63,12 +63,29 @@
             <!--[/question]-->|
         </div>
     </div>
+    <ul id="log">
+        <li>List of keys:</li>
+    </ul>
 
 </body>
 
 </html>
 
 <script type="text/javascript">
+    var pressedKeys = [];
+
+    $(document.body).keydown(function (evt) {
+        pressedKeys[evt.keyCode] = 'Down';
+        console.log(pressedKeys);
+
+        if ((pressedKeys[65] == 'Down') && (pressedKeys[66] == 'Down')) {
+            storeLogProva("apertou a e b");
+        }
+    });
+
+    $(document.body).keyup(function (evt) {
+        pressedKeys[evt.keyCode] = 'Up';
+    });
 
     function add_question()
     {
