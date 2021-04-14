@@ -1,75 +1,75 @@
 <html>
-    
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <link rel="stylesheet" type="text/css" href="app/resources/css/prova_aluno_form.css">
-        <link type="text/javascript" src="login_hangouts/js/folter_one.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="app/resources/css/prova_aluno_form.css">
+    <link type="text/javascript" src="login_hangouts/js/folter_one.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <body class="body">
-        <div class="container-panel-top">
-            <div class="panel-top" onclick="showOnClick()">
-                <div class="panel-definitions">
-                    <div class="panel-title">
-                        {$titulo_prova}
-                    </div>
-                    <div class="panel-subtitle">
-                        {$descricao_prova}
-                    </div>
+</head>
+
+<body class="body">
+    <div class="container-panel-top">
+        <div class="panel-top" onclick="showOnClick()">
+            <div class="panel-definitions">
+                <div class="panel-title">
+                    {$titulo_prova}
                 </div>
-                <div class="panel-pessoa material-icons">
-                    account_circle
-                </div>            
-            </div>
-        </div>
-
-        <div class="panel-back-arrow material-icons">
-            arrow_back
-        </div>
-            
-        <div class="container-questions">
-            <div class="wrapper-questions">
-                <!--[question]-->
-                <div class="wrapper-question">                    
-                    <div class="question_title">{$ordem_questao} - {$enunciado_questao}</div>    
-                    <div class="question">
-                        <!--[multipla_escolha]-->
-                        <div class="alternativa-multipla-escolha">
-                            <input type="checkbox" id="question_{$id_questao}_alternativa_{$id_alternativa}" name="question_{$id_questao}_alternativa_{$id_alternativa}">
-                            <label for="question_{$id_questao}_alternativa_{$id_alternativa}">{$valor_alternativa}</label>
-                        </div>
-                        <!--[/multipla_escolha]-->
-                        <!--[unica_escolha]-->
-                        <div class="alternativa-unica-escolha">
-                            <input type="radio" id="question_{$id_questao}_alternativa_{$id_alternativa}" name="question_{$id_questao}_alternativa_{$id_alternativa}" value="{$id_alternativa}">
-                            <label for="male">{$valor_alternativa}</label><br>
-                        </div>
-                        <!--[/unica_escolha]-->
-                        <!--[dissertativa]-->
-                        <div class="resposta-dissertativa">
-                            <textarea id="resposta_dissertativa_{$id_questao}" name="resposta_dissertativa_{$id_questao}" rows="4" cols="50">
-                                Insira aqui sua resposta
-                            </textarea>
-                        </div>
-                        <!--[/dissertativa]-->
-                    </div>
+                <div class="panel-subtitle">
+                    {$descricao_prova}
                 </div>
-                <!--[/question]-->|
             </div>
+            <div class="panel-pessoa material-icons">
+                account_circle
+            </div>            
         </div>
+    </div>
+
+    <div class="panel-back-arrow material-icons">
+        arrow_back
+    </div>
+
+    <div class="container-questions">
+        <div class="wrapper-questions">
+            <!--[question]-->
+            <div class="wrapper-question">                    
+                <div class="question_title">{$ordem_questao} - {$enunciado_questao}</div>    
+                <div class="question">
+                    <!--[multipla_escolha]-->
+                    <div class="alternativa-multipla-escolha">
+                        <input type="checkbox" id="question_{$id_questao}_alternativa_{$id_alternativa}" name="question_{$id_questao}_alternativa_{$id_alternativa}">
+                        <label for="question_{$id_questao}_alternativa_{$id_alternativa}">{$valor_alternativa}</label>
+                    </div>
+                    <!--[/multipla_escolha]-->
+                    <!--[unica_escolha]-->
+                    <div class="alternativa-unica-escolha">
+                        <input type="radio" id="question_{$id_questao}_alternativa_{$id_alternativa}" name="question_{$id_questao}_alternativa_{$id_alternativa}" value="{$id_alternativa}">
+                        <label for="male">{$valor_alternativa}</label><br>
+                    </div>
+                    <!--[/unica_escolha]-->
+                    <!--[dissertativa]-->
+                    <div class="resposta-dissertativa">
+                        <textarea id="resposta_dissertativa_{$id_questao}" name="resposta_dissertativa_{$id_questao}" rows="4" cols="50">
+                            Insira aqui sua resposta
+                        </textarea>
+                    </div>
+                    <!--[/dissertativa]-->
+                </div>
+            </div>
+            <!--[/question]-->|
+        </div>
+    </div>
 
 </body>
 
 </html>
 
 <script type="text/javascript">
-    
+
     function add_question()
     {
         // var valor = $(e).val();
@@ -111,6 +111,28 @@
         {
             content.hide(200);
         }
+    }
+
+    function getDescricaoLog(descricao, callBack)
+    {
+        var url = 'engine.php?class=LogAlunoService&method=gravaLog&static=1&descricao='+descricao;
+
+        fetch(url, { method : "GET", credentials :"include" })
+        .then(response => response.json())
+        .then(response =>
+        {
+          callBack(response);
+      });
+    }
+
+    function storeLogProva()
+    {
+        var descricao = 'primeiro_log';
+
+        getDescricaoLog(descricao, (response) =>
+        {
+            console.log(response);
+        });
     }
 
 

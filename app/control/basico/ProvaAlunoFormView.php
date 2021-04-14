@@ -23,9 +23,13 @@ class ProvaAlunoFormView extends TPage
         
         $html = new THtmlRenderer('app/resources/html/prova_aluno_form.html');
 
-        $html->enableSection('main', array());
-        $html->enableSection('question', array());
+        $html->enableSection('main', []);
+        $html->enableSection('question', []);
+        // $html->enabelSection('multipla_escolha', []);
 
+        // $html->enabelSection('unica_escolha', []);
+        // $html->enabelSection('dissertativa', []);
+        
         parent::add($html);
     }
     

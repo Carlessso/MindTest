@@ -11,3 +11,115 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /var/www/html/prova_online/index.php on line 15
+[13-Apr-2021 09:21:01 America/Sao_Paulo] PHP Notice:  Undefined index: prova_classes in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:21:01 America/Sao_Paulo] PHP Warning:  in_array() expects parameter 2 to be array, null given in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:21:35 America/Sao_Paulo] PHP Notice:  Undefined index: prova_classes in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:21:35 America/Sao_Paulo] PHP Warning:  in_array() expects parameter 2 to be array, null given in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:21:57 America/Sao_Paulo] PHP Notice:  Undefined index: prova_classes in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:21:57 America/Sao_Paulo] PHP Warning:  in_array() expects parameter 2 to be array, null given in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:22:04 America/Sao_Paulo] PHP Notice:  Undefined index: prova_classes in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:22:04 America/Sao_Paulo] PHP Warning:  in_array() expects parameter 2 to be array, null given in /var/www/html/prova_online/index.php on line 7
+[13-Apr-2021 09:49:59 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:49:59 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:50:10 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:50:10 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:50:19 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:50:19 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:51:37 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:51:37 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:52:17 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:52:17 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:52:38 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:52:38 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:52:51 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:52:51 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:52:58 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:52:58 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 09:53:16 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_user.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 66
+[13-Apr-2021 09:53:16 America/Sao_Paulo] PHP Warning:  file_get_contents(app/templates/prova/libraries_builder.html): failed to open stream: No such file or directory in /var/www/html/prova_online/app/lib/builder/BuilderTemplateParser.php on line 67
+[13-Apr-2021 11:08:26 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /var/www/html/prova_online/lib/adianti/widget/template/THtmlRenderer.php on line 328
+[13-Apr-2021 11:08:36 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /var/www/html/prova_online/lib/adianti/widget/template/THtmlRenderer.php on line 328
+[13-Apr-2021 11:09:01 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /var/www/html/prova_online/lib/adianti/widget/template/THtmlRenderer.php on line 328
+[13-Apr-2021 11:09:50 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /var/www/html/prova_online/lib/adianti/widget/template/THtmlRenderer.php on line 328
+[14-Apr-2021 12:36:09 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'LogAlunoProva' not found in /var/www/html/prova_online/app/service/log/LogAlunoService.php:15
+Stack trace:
+#0 [internal function]: LogAlunoService::gravaLog(Array)
+#1 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(69): call_user_func(Array, Array)
+#2 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#3 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/prova_online/app/service/log/LogAlunoService.php on line 15
+[14-Apr-2021 12:36:39 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'LogAlunoProva' not found in /var/www/html/prova_online/app/service/log/LogAlunoService.php:15
+Stack trace:
+#0 [internal function]: LogAlunoService::gravaLog(Array)
+#1 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(69): call_user_func(Array, Array)
+#2 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#3 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/prova_online/app/service/log/LogAlunoService.php on line 15
+[14-Apr-2021 12:39:26 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method Adianti\Widget\Template\THtmlRenderer::enabelSection() in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php:29
+Stack trace:
+#0 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(80): ProvaAlunoFormView->__construct(Array)
+#1 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#2 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#3 {main}
+  thrown in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php on line 29
+[14-Apr-2021 12:39:36 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method Adianti\Widget\Template\THtmlRenderer::enabelSection() in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php:29
+Stack trace:
+#0 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(80): ProvaAlunoFormView->__construct(Array)
+#1 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#2 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#3 {main}
+  thrown in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php on line 29
+[14-Apr-2021 12:39:46 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method Adianti\Widget\Template\THtmlRenderer::enabelSection() in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php:29
+Stack trace:
+#0 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(80): ProvaAlunoFormView->__construct(Array)
+#1 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#2 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#3 {main}
+  thrown in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php on line 29
+[14-Apr-2021 12:40:13 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method Adianti\Widget\Template\THtmlRenderer::enabelSection() in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php:29
+Stack trace:
+#0 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(80): ProvaAlunoFormView->__construct(Array)
+#1 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#2 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#3 {main}
+  thrown in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php on line 29
+[14-Apr-2021 12:40:17 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method Adianti\Widget\Template\THtmlRenderer::enabelSection() in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php:30
+Stack trace:
+#0 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(80): ProvaAlunoFormView->__construct(Array)
+#1 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#2 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#3 {main}
+  thrown in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php on line 30
+[14-Apr-2021 12:40:27 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method Adianti\Widget\Template\THtmlRenderer::enabelSection() in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php:31
+Stack trace:
+#0 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(80): ProvaAlunoFormView->__construct(Array)
+#1 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#2 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#3 {main}
+  thrown in /var/www/html/prova_online/app/control/basico/ProvaAlunoFormView.php on line 31
+[14-Apr-2021 12:41:31 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'LogAlunoProva' not found in /var/www/html/prova_online/app/service/log/LogAlunoService.php:15
+Stack trace:
+#0 [internal function]: LogAlunoService::gravaLog(Array)
+#1 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(69): call_user_func(Array, Array)
+#2 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#3 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/prova_online/app/service/log/LogAlunoService.php on line 15
+[14-Apr-2021 12:42:02 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'LogAlunoProva' not found in /var/www/html/prova_online/app/service/log/LogAlunoService.php:15
+Stack trace:
+#0 [internal function]: LogAlunoService::gravaLog(Array)
+#1 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(69): call_user_func(Array, Array)
+#2 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#3 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/prova_online/app/service/log/LogAlunoService.php on line 15
+[14-Apr-2021 12:42:44 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'LogAlunoProva' not found in /var/www/html/prova_online/app/service/log/LogAlunoService.php:15
+Stack trace:
+#0 [internal function]: LogAlunoService::gravaLog(Array)
+#1 /var/www/html/prova_online/lib/adianti/core/AdiantiCoreApplication.php(69): call_user_func(Array, Array)
+#2 /var/www/html/prova_online/engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#3 /var/www/html/prova_online/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/prova_online/app/service/log/LogAlunoService.php on line 15
