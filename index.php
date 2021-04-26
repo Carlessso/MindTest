@@ -17,7 +17,14 @@ ApplicationTranslator::setLanguage( TSession::getValue('user_language'), true );
 if ( TSession::getValue('logged') )
 {
     $content = file_get_contents("app/templates/{$theme}/layout.html");
-    $menu    = AdiantiMenuBuilder::parse('menu.xml', $theme);
+    $menu = AdiantiMenuBuilder::parse('menu.xml', $theme);
+    // var_dump("app/templates/{$theme}/layout.html");die;
+    if ($theme === 'prova')
+    {
+        $menu = NULL;
+        // $content = NULL;
+    }
+    
     $content = str_replace('{MENU}', $menu, $content);
 }
 else

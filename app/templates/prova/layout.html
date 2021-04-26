@@ -18,65 +18,11 @@
     
 </head>
 
-<body class="theme-red {builder_top_menu}">
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-indigo">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p id="page-loader-message">Carregando...</p>
-        </div>
-    </div>
+<body style="background-color: white;">
+    
 
-    <div class="overlay"></div>
-
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-
-        <div id="envelope_search">
-        </div>
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
-
-    <nav class="nav navbar navbar-expand-lg" style="z-index:999">
-        <a href="javascript:void(0);" class="bars"></a>
-        <a class="navbar-brand" href="index.php">MindTest</a>
-        <!--[IF-TOP-MENU]-->
-        <!--[/IF-TOP-MENU]-->
-        <div class="collapse navbar-collapse" id="navbartoggle">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="material-icons">person</i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class='header'>{username}</li>
-                        <li class='body'>
-                            <ul class='menu' style="list-style:none">
-                                <li><a class='waves-effect waves-block' href="index.php?class=SystemProfileView"><i class="material-icons">person</i>_t{Profile}</a></li>
-                                <li><a class='waves-effect waves-block' href="index.php?class=LoginForm&method=reloadPermissions&static=1"><i class="material-icons">cached</i>_t{Reload}</a></li>
-                                <li><a class='waves-effect waves-block' generator="adianti" href="index.php?class=LoginForm&method=onLogout&static=1"><i class="material-icons">input</i>Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="content content-wrapper">
-        <div class="container-fluid">
+    <section>
+        <div>
             <div id="adianti_div_content">
             </div>
         </div>
@@ -86,24 +32,6 @@
         <div id="adianti_right_panel" class="right-panel"></div>
     </section>
     
-      <div id="adianti_debug_panel" class="debug-panel">
-          <i onclick="Adianti.hideDebugPanel()" class="fa fa-times" aria-hidden="true" title="_t{Close}"></i>
-          <span > Request URL </span>
-          <span > Request Data </span>
-          <div id="request_url_panel"> </div>
-          <div id="request_data_panel"> </div>
-      </div>
-      
-    <script>
-    BuilderTemplate.init({
-        top_menu: {top_menu_var},
-        top_menu_only: {top_menu_only},
-        language: '{lang}',
-        debug: '{debug}',
-        verify_messages_menu : {verify_messages_menu},
-        verify_notifications_menu : {verify_notifications_menu},
-        public_layout: false
-    });
-    </script>
+
 </body>
 </html>

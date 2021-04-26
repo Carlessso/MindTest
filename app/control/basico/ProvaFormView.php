@@ -5,7 +5,7 @@
  * @version    1.0
  * @package    control
  * @subpackage admin
- * @author     Pablo Dall'Oglio
+ * @author     Guilherme Cegolini
  * @copyright  Copyright (c) 2006 Adianti Solutions Ltd. (http://www.adianti.com.br)
  * @license    http://www.adianti.com.br/framework-license
  */
@@ -22,25 +22,20 @@ class ProvaFormView extends TPage
     function __construct($param)
     {
         parent::__construct();
-        
-        TScript::create("$('body').addClass('ls-closed');");
-        TScript::create("$('section').removeClass('content');");
-        TScript::create("$('div').removeClass('container-fluid');");
-        TScript::create("$('body').css('background-color', '#ffffff');");
-        TScript::create("$('.navbar').css('display', 'none');");
 
         $this->html = new THtmlRenderer('app/resources/html/folder_one.html');
-
-        $this->form = new BootstrapFormBuilder('teste', 'Status da ação');
-        $this->makeFormularioProva();
-
-        $this->html->enableSection('main', array('form' => $this->form));
-
+        
+        $form = $this->makeFormularioProva();
+        
+        $this->html->enableSection('main', array('form' => $form));
+        
         parent::add($this->html);
     }
-
+    
     public function makeFormularioProva()
     {
+        $form = new BootstrapFormBuilder('teste');
+
         $dt_inicio      = new TDate('dt_inicio');
         $hr_inicio      = new TTime('hr_inicio');
         $dt_fim         = new TDate('dt_fim');
@@ -65,9 +60,9 @@ class ProvaFormView extends TPage
         $cor_primaria->setSize('100%');
         $cor_secundaria->setSize('100%');
 
-        $dias->setLabel('dias');
-        $horas->setTip('dias');
-        $minutos->placeholder = 'dias';
+        $dias->setValue(0);
+        $horas->setValue(0);
+        $minutos->setValue(0);
 
         $modelo->addItems(['0' => 'Questões livres', '1' => 'Sequencial']);
         $modelo->setLayout('horizontal');
@@ -80,9 +75,11 @@ class ProvaFormView extends TPage
         $ordem->setValue('0');
         $ordem->setUseButton();
 
-        $dias->addItems([1 => 'teste', 2 => 'teste']);
+        $dias->addItems(ProvaComboService::getDias());
+        $horas->addItems(ProvaComboService::getHoras());
+        $minutos->addItems(ProvaComboService::getMinutos());
 
-        $row         = $this->form->addFields(
+        $row         = $form->addFields(
             [new TLabel('Data de inicio', NULL, NULL, NULL, '100%'), $dt_inicio],
             [new TLabel('Horário de inicio', NULL, NULL, NULL, '100%'), $hr_inicio],
             [new TLabel('Data de fim', NULL, NULL, NULL, '100%'), $dt_fim],
@@ -90,20 +87,22 @@ class ProvaFormView extends TPage
         );
         $row->layout = ['col-sm-2','col-sm-2','col-sm-2','col-sm-2' ];
 
-        $row         = $this->form->addFields(
+        $row         = $form->addFields(
             [new TLabel('Duração', NULL, NULL, NULL, '100%'), $dias],
-            [new TLabel(' ', NULL, NULL, NULL, '100%'), $horas],
-            [new TLabel(' ', NULL, NULL, NULL, '100%'), $minutos]
+            [new TLabel('NULL', '#15202b', NULL, NULL, '100%'), $horas],
+            [new TLabel('NULL', '#15202b', NULL, NULL, '100%'), $minutos]
         );
         $row->layout = ['col-sm-2','col-sm-2','col-sm-2'];
 
-        $row         = $this->form->addFields(
+        $row         = $form->addFields(
             [new TLabel('Modelo do formulário', NULL, NULL, NULL, '100%'), $modelo],
             [new TLabel('Ordem das questões', NULL, NULL, NULL, '100%'), $ordem],
             [new TLabel('Cor primária', NULL, NULL, NULL, '100%'), $cor_primaria],
             [new TLabel('Cor secundária', NULL, NULL, NULL, '100%'), $cor_secundaria]
         );
         $row->layout = ['col-sm-2','col-sm-2','col-sm-2','col-sm-2'];
+        
+        return $form;
     }
 
     /**
@@ -111,6 +110,7 @@ class ProvaFormView extends TPage
      */
     public function onView($param)
     {
+        QuestaoFormView::addQuestion(NULL);
     }
     
 }

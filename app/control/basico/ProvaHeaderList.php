@@ -190,11 +190,11 @@ class ProvaHeaderList extends TPage
         $panel->add($headerActions);
         $panel->add($this->datagrid_form);
 
-        // $button_cadastrar = new TButton('button_button_cadastrar');
-        // $button_cadastrar->setAction(new TAction(['ProvaForm', 'onShow']), "Cadastrar");
-        // $button_cadastrar->addStyleClass('');
-        // $button_cadastrar->setImage('fas:plus #69aa46');
-        // $this->datagrid_form->addField($button_cadastrar);
+        $button_cadastrar = new TButton('button_button_cadastrar');
+        $button_cadastrar->setAction(new TAction(['ProvaForm', 'onShow']), "Cadastrar");
+        $button_cadastrar->addStyleClass('');
+        $button_cadastrar->setImage('fas:plus #69aa46');
+        $this->datagrid_form->addField($button_cadastrar);
 
         $button_cadastrar_prova = new TButton('button_button_cadastrar_form');
         $button_cadastrar_prova->setAction(new TAction(['ProvaFormView', 'onView']), "Prova tela final");
@@ -209,7 +209,7 @@ class ProvaHeaderList extends TPage
         $dropdown_button_exportar->addPostAction( "PDF", new TAction(['ProvaHeaderList', 'onExportPdf']), 'datagrid_'.self::$formName, 'far:file-pdf #e74c3c' );
         $dropdown_button_exportar->addPostAction( "XML", new TAction(['ProvaHeaderList', 'onExportXml']), 'datagrid_'.self::$formName, 'far:file-code #95a5a6' );
         
-        $head_left_actions->add($button_cadastrar_prova);
+        $head_left_actions->add($button_cadastrar);
         
         $head_right_actions->add($dropdown_button_exportar);
         
