@@ -17,6 +17,7 @@ class Questao extends TRecord
     {
         parent::__construct($id, $callObjectLoad);
         parent::addAttribute('pergunta');
+        parent::addAttribute('resposta');
         parent::addAttribute('is_multipla_escolha');
         parent::addAttribute('prova_id');
         parent::addAttribute('minutos_realizacao');

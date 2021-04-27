@@ -25,13 +25,39 @@ class ProvaFormView extends TPage
 
         $this->html = new THtmlRenderer('app/resources/html/folder_one.html');
         
-        $form = $this->makeFormularioProva();
+        $form_title = $this->makeFormulario();
+        $form       = $this->makeFormularioProva();
         
-        $this->html->enableSection('main', array('form' => $form));
+        $this->html->enableSection('main', array('form_title' => $form_title, 'form' => $form));
         
         parent::add($this->html);
     }
     
+    public function makeFormulario()
+    {
+        $form = new BootstrapFormBuilder('testea');
+        
+        $pergunta = new TEntry('pergunta');
+        $resposta = new TEntry('resposta');
+        
+        $pergunta->style = 'font-size: 16px';
+        
+        $pergunta->setSize('100%', '11px');
+        $resposta->setSize('100%');
+        
+        $pergunta->placeholder = 'Digite a questão aqui';
+        $resposta->placeholder = 'Resposta';
+        
+        $row = $form->addFields([NULL, $pergunta]);
+        $row->layout = ['col-sm-12'];
+        $row->class = "question-div-text";
+        $row = $form->addFields([NULL, $resposta]);
+        $row->layout = ['col-sm-12'];
+
+        return $form;
+    }
+
+
     public function makeFormularioProva()
     {
         $form = new BootstrapFormBuilder('teste');
@@ -85,24 +111,33 @@ class ProvaFormView extends TPage
             [new TLabel('Data de fim', NULL, NULL, NULL, '100%'), $dt_fim],
             [new TLabel('Horário de fim', NULL, NULL, NULL, '100%'), $hr_fim]
         );
-        $row->layout = ['col-sm-2','col-sm-2','col-sm-2','col-sm-2' ];
-
+        $row->layout = ['col-md-3 col-lg-2','col-md-3 col-lg-2','col-md-3 col-lg-2','col-md-3 col-lg-2' ];
+        
         $row         = $form->addFields(
             [new TLabel('Duração', NULL, NULL, NULL, '100%'), $dias],
             [new TLabel('NULL', '#15202b', NULL, NULL, '100%'), $horas],
             [new TLabel('NULL', '#15202b', NULL, NULL, '100%'), $minutos]
         );
-        $row->layout = ['col-sm-2','col-sm-2','col-sm-2'];
-
+        $row->layout = ['col-md-3 col-lg-2','col-md-3 col-lg-2','col-md-3 col-lg-2'];
+        
         $row         = $form->addFields(
             [new TLabel('Modelo do formulário', NULL, NULL, NULL, '100%'), $modelo],
             [new TLabel('Ordem das questões', NULL, NULL, NULL, '100%'), $ordem],
             [new TLabel('Cor primária', NULL, NULL, NULL, '100%'), $cor_primaria],
             [new TLabel('Cor secundária', NULL, NULL, NULL, '100%'), $cor_secundaria]
         );
-        $row->layout = ['col-sm-2','col-sm-2','col-sm-2','col-sm-2'];
+        
+        $row->layout = ['col-md-3 col-lg-2','col-md-3 col-lg-2','col-md-3 col-lg-2','col-md-3 col-lg-2' ];
+
+        $btn_onsearch = $form->addAction('Salvar', new TAction(['ProvaFormView', 'onSave']), NULL);
+        $btn_onsearch->addStyleClass('btn-primary');
         
         return $form;
+    }
+
+    public static function onSave($param)
+    {
+        var_dump($param);
     }
 
     /**
@@ -110,6 +145,7 @@ class ProvaFormView extends TPage
      */
     public function onView($param)
     {
+        
         QuestaoFormView::addQuestion(NULL);
     }
     

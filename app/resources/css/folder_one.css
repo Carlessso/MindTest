@@ -5,6 +5,7 @@
     position: fixed; width: 100%;
     cursor: pointer;
     box-shadow: 0 0 3px #15202b;
+    z-index: 100;
 }
 
 .panel-top-heigth{
@@ -93,36 +94,6 @@
     padding: 4px;
 }
 
-.prova-form .fb-inline-field-container,
-.question-div-text .fb-inline-field-container {
-    position: unset !important;
-}
-
-.prova-form .fb-field-container,
-.question-div-text .fb-field-container {
-    position: unset !important;
-}
-
-.prova-form .panel .btn:not(.btn-link):not(.btn-circle) {
-    position: unset !important;
-}
-
-.prova-form .input-group {
-    position: unset;
-}
-
-.prova-form .tfield {
-    position: unset;
-}
-
-.prova-form .btn-group {
-    position: unset;
-}
-
-.prova-form .btn-default {
-    position: unset;
-}
-
 .prova-form .btn-group .btn-default {
     border: 1px solid white !important;
 }
@@ -142,6 +113,7 @@
     border: solid 1px #999 !important;
     border-radius: 2px !important;
     height: 40px !important;
+    color: #FFFFFF !important;
 }
 
 /* .prova-form .ui-sortable td .btn .btn-default .btn-sm{
@@ -181,14 +153,13 @@
     background: #15202b;
     border-radius: 4px;
     height: calc(100vw * 0.13);
-    width: calc(100vw * 0.5);
-    min-height: 190px;
-    min-width: 500px;
+    width: calc(100vw * 0.45);
+    min-height: 200px;
+    min-width: 650px;
 }
 
 .question-div .card{
     background-color: rgb(21, 32, 43);
-    /* width: 90% !important; */
     box-shadow: none;
     border: none;
     position: unset;
@@ -285,26 +256,40 @@
 }
 
 ::placeholder {
-    color: #FFFFFF !important;
+    color: #ffffff9c !important;
 }
 
-.panel-question .panel-footer{
+.prova-form .panel-footer,
+.panel-question .panel-footer {
     background-color: #15202B;
     border: 0px;
 }
 
-.panel-question .panel-footer .btn-primary{
+.prova-form .panel-footer .btn-primary,
+.panel-question .panel-footer .btn-primary {
     float: right;
     margin: -15px 4px 10px 0;
     background-color: #63ccff !important;
     color: #15202b;
     border: solid 1px white !important;
+    width: 80px;
 }
 
-.panel-question .panel-footer .btn-primary .fa{
+.panel-question .panel-footer .btn-primary {
+    float: left;
+}
+
+
+
+.prova-form .panel-footer .btn-primary .fa,
+.panel-question .panel-footer .btn-primary .fa {
     color: #15202b !important;
 }
 
+.prova-form .panel-footer .btn-primary,
+.prova-form .panel-footer .btn-primary:hover,
+.prova-form .panel-footer .btn-primary:active,
+.prova-form .panel-footer .btn-primary:focus,
 .panel-question .panel-footer .btn-primary,
 .panel-question .panel-footer .btn-primary:hover,
 .panel-question .panel-footer .btn-primary:active,

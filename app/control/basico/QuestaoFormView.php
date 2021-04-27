@@ -111,7 +111,7 @@ class QuestaoFormView extends TPage
         
         $id->setValue($param['id']);
 
-        $peso->setValue(0);        
+        $peso->setValue(5);        
         $peso->addItems(ProvaComboService::getPontuacao());
 
         $is_obrigatoria->addItems(['1' => 'Sim', '0' => 'Não']);
@@ -127,7 +127,7 @@ class QuestaoFormView extends TPage
         $row->layout = ['col-sm-4','col-sm-4','col-sm-4'];
         $row->class  = 'prova-form';
         
-        $btn_onsearch = $form->addAction('Salvar', new TAction(['QuestaoFormView', 'onSave']), 'fa:save #ffffff');
+        $btn_onsearch = $form->addAction('Salvar', new TAction(['QuestaoFormView', 'onSave']), NULL);
         $btn_onsearch->addStyleClass('btn-primary');
         
         return $form;
@@ -139,21 +139,24 @@ class QuestaoFormView extends TPage
         
         $pergunta = new TText('pergunta');
         
-        $id_questao = new THidden("id_questao[]");
-        $resposta   = new TEntry("resposta[]");
-        $is_correta = new TCheckButton("is_correta[]");
-        // $is_correta->setValue("aa");
-        // $is_correta->setIndexValue(1);
+        $id_alternativa = new THidden("id_alternativa[]");
+        $descricao      = new TEntry("descricao[]");
+        $is_correta     = new TCombo("is_correta[]");
 
-        
+        $is_correta->addItems([1 => 'Correta', 0 => 'Falsa']);
+        $is_correta->class = 'tfield';
+        $is_correta->setValue(0);
+
         $alternativas = new TFieldList('alternativas');
         $alternativas->width = '100%';
         $alternativas->class .= 'prova-form';
-        $alternativas->addField( '',                          $id_questao, ['width' => '0%']);
-        $alternativas->addField( 'Adicione as alternativas',  $resposta, ['width' => '95%']);
-        $alternativas->addField( '',                          $is_correta, ['width' => '5%']);
+        $alternativas->addField( '',                          $id_alternativa, ['width' => '0%']);
+        $alternativas->addField( 'Adicione as alternativas',  $descricao,      ['width' => '90%']);
+        $alternativas->addField( '',                          $is_correta,     ['width' => '10%', 'data-default-values' => 0]);
         
-        $form->addField($resposta);
+        $form->addField($id_alternativa);
+        $form->addField($descricao);
+        $form->addField($is_correta);
         
         $alternativas->addHeader();
         $alternativas->addDetail( new stdClass );
@@ -162,10 +165,10 @@ class QuestaoFormView extends TPage
         $pergunta->style = 'font-size: 16px';
         
         $pergunta->setSize('100%', '11px');
-        $resposta->setSize('100%');
+        $descricao->setSize('100%');
         
-        $pergunta->placeholder = 'Digite a questão aqui';
-        $resposta->placeholder = 'Resposta';
+        $pergunta->placeholder  = 'Digite a questão aqui';
+        $descricao->placeholder = 'Alternativa';
         
         $row = $form->addFields([NULL, $pergunta]);
         $row->layout = ['col-sm-12'];
@@ -187,7 +190,7 @@ class QuestaoFormView extends TPage
         $peso->setSize('100%');
         $is_obrigatoria->setSize('100%');
 
-        $peso->setValue(0);        
+        $peso->setValue(5);        
         $peso->addItems(ProvaComboService::getPontuacao());
 
         $is_obrigatoria->addItems(['1' => 'Sim', '0' => 'Não']);
@@ -203,7 +206,7 @@ class QuestaoFormView extends TPage
         $row->layout = ['col-sm-4','col-sm-4','col-sm-4'];
         $row->class  = 'prova-form';
 
-        $btn_onsearch = $form->addAction('Salvar', new TAction(['QuestaoFormView', 'onSave']), 'fa:save #ffffff');
+        $btn_onsearch = $form->addAction('Salvar', new TAction(['QuestaoFormView', 'onSave']), NULL);
         $btn_onsearch->addStyleClass('btn-primary');
 
         return $form;
@@ -219,7 +222,6 @@ class QuestaoFormView extends TPage
         {
             $form = self::makeSelectQuestion($param);
         }
-
         
         $add_question_action    = new TAction(['QuestaoFormView', 'addQuestion'], $param);
         $delete_question_action = new TAction(['QuestaoFormView', 'deleteQuestion'], $param);
@@ -261,6 +263,9 @@ class QuestaoFormView extends TPage
         
         //execute action to add blank question
         TScript::create("$(document).ready(function(){ change_page('{$question->id}', '{$action}'); });");
+        
+        // TScript::create("document.getElementById('question_{$question->id}').scrollIntoView();");
+        // document.getElementById('myDiv').scrollIntoView();    
     }
 
     public static function deleteQuestion($param)
@@ -292,35 +297,44 @@ class QuestaoFormView extends TPage
         {
             TTransaction::open('projeto');
             
-            var_dump($param);
-            return;
-
-            if(is_array($param['resposta']))
+            if(isset($param['descricao']) AND is_array($param['descricao']))
             {
-                if(count($param['resposta']) === 1)
+                if(count($param['descricao']) > 1)
+                {
+                    $criteria =  new TCriteria();
+                    $criteria->add(new TFilter('questao_id', '=', $param['id']));
+                    $alternativas_old = Alternativa::getObjects($criteria);
+                    foreach($alternativas_old AS $alternativa_old)
+                    {
+                        $alternativa_old->delete();
+                    }
+
+                    foreach($param['descricao'] AS $key => $descricao)
+                    {
+                        $alternativa = new Alternativa();
+                        $alternativa->descricao  =  empty($param['descricao'][$key])  ? 'Alternativa '. $key : $param['descricao'][$key];
+                        $alternativa->is_correta =  empty($param['is_correta'][$key]) ? FALSE : $param['is_correta'][$key];
+                        $alternativa->questao_id =  $param['id'];
+                        $alternativa->store();
+                    }
+                }
+                else
                 {
                     TToast::show('error', 'Para questoes desse tipo adicione ao menos duas alternativas');
                     return;
-                }
-
-                foreach($param['resposta'] as $resposta)
-                {
-                    $obj_resposta = new Resposta();
-                    $obj_resposta['id'] = isset($resposta['id']) ? $resposta['id'] : NULL; 
-                    $obj_resposta['descricao'] = isset($resposta['descricao']) ? $resposta['descricao'] : NULL; 
                 }
             }
 
             $questao = new Questao();
             $questao->id = $param['id'];
-            $questao->pergunta = $param['pergunta'];
+            $questao->pergunta = isset($param['pergunta']) ? $param['pergunta'] : 'Questão sem título';
+            $questao->resposta = isset($param['resposta']) ? $param['resposta'] : NULL;
             $questao->is_obrigatoria = $param['is_obrigatoria'];
             $questao->peso = $param['peso'];
             $questao->is_multipla_escolha = isset($param['is_multipla_escolha']) ? $param['is_multipla_escolha'] : FALSE;
             $questao->minutos_realizacao = isset($param['minutos_realizacao']) ? $param['minutos_realizacao'] : 0;
             $questao->store();
 
-            
             TToast::show('success', 'Registro salvo com sucesso');
             
             TTransaction::close();
