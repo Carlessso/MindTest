@@ -8,7 +8,8 @@ class Alternativa extends TRecord
 
     private $questao;
 
-    
+    use SystemChangeLogTrait;
+
 
     /**
      * Constructor method

@@ -20,7 +20,6 @@ class SystemSqlLogService implements AdiantiLoggerInterface
      */
     public function write($message)
     {
-        return 'oi';
         $dbname = TTransaction::getDatabase();
         $uniqid = TTransaction::getUniqId();
         

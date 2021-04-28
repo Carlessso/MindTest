@@ -9,7 +9,7 @@ class AlternativaRespostaQuestao extends TRecord
     private $alternativa;
     private $questao_usuario_prova;
 
-    
+    use SystemChangeLogTrait;
 
     /**
      * Constructor method

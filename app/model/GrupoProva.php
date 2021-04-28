@@ -9,7 +9,7 @@ class GrupoProva extends TRecord
     private $prova;
     private $grupo;
 
-    
+    use SystemChangeLogTrait;
 
     /**
      * Constructor method

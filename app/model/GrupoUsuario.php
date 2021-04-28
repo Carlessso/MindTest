@@ -9,7 +9,7 @@ class GrupoUsuario extends TRecord
     private $usuario;
     private $grupo;
 
-    
+    use SystemChangeLogTrait;
 
     /**
      * Constructor method

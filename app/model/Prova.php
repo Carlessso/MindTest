@@ -8,7 +8,8 @@ class Prova extends TRecord
 
     private $fk_usuario_responsavel;
 
-    
+    use SystemChangeLogTrait;
+
 
     /**
      * Constructor method
@@ -24,8 +25,7 @@ class Prova extends TRecord
         parent::addAttribute('usuario_responsavel');
         parent::addAttribute('is_publica');
         parent::addAttribute('inicio');
-        parent::addAttribute('fim');
-            
+        parent::addAttribute('fim');            
     }
 
     /**

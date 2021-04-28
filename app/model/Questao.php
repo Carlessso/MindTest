@@ -5,9 +5,10 @@ class Questao extends TRecord
     const TABLENAME  = 'questao';
     const PRIMARYKEY = 'id';
     const IDPOLICY   =  'serial'; // {max, serial}
-
+    
     private $prova;
-
+    
+    use SystemChangeLogTrait;
     
 
     /**

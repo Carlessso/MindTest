@@ -9,7 +9,7 @@ class QuestaoUsuarioProva extends TRecord
     private $questao;
     private $usuario_prova;
 
-    
+    use SystemChangeLogTrait;
 
     /**
      * Constructor method

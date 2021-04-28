@@ -8,7 +8,7 @@ class Resposta extends TRecord
 
     private $questao;
 
-    
+    use SystemChangeLogTrait;
 
     /**
      * Constructor method

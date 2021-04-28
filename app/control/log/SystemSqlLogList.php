@@ -128,9 +128,32 @@ class SystemSqlLogList extends TStandardList
         $this->pageNavigation->setAction(new TAction(array($this, 'onReload')));
         $this->pageNavigation->setWidth($this->datagrid->getWidth());
         
+        $headerActions = new TElement('div');
+        $headerActions->class = ' datagrid-header-actions ';
+
+        $head_left_actions = new TElement('div');
+        $head_left_actions->class = ' datagrid-header-actions-left-actions ';
+
+        $head_right_actions = new TElement('div');
+        $head_right_actions->class = ' datagrid-header-actions-left-actions ';
+
+        $headerActions->add($head_left_actions);
+        $headerActions->add($head_right_actions);
+        
         $panel = new TPanelGroup;
+        $panel->add($headerActions);
         $panel->add($this->datagrid)->style='overflow-x:auto';
         $panel->addFooter($this->pageNavigation);
+
+        $dropdown_button_exportar = new TDropDown("Exportar", 'fas:file-export #2d3436');
+        $dropdown_button_exportar->setPullSide('right');
+        $dropdown_button_exportar->setButtonClass('btn btn-default waves-effect dropdown-toggle');
+        $dropdown_button_exportar->addPostAction( "CSV", new TAction(['SystemSqlLogList', 'onExportCsv']), 'form_search_SystemSqlLog', 'fas:table #00b894' );
+        $dropdown_button_exportar->addPostAction( "PDF", new TAction(['SystemSqlLogList', 'onExportPdf']), 'form_search_SystemSqlLog', 'far:file-pdf #e74c3c' );
+
+        // $head_left_actions->add($button_cadastrar);
+
+        $head_right_actions->add($dropdown_button_exportar);
         
         $container = new TVBox;
         $container->style = 'width: 100%';
@@ -175,5 +198,105 @@ class SystemSqlLogList extends TStandardList
         parent::setCriteria($criteria);
         
         $this->onReload($param);
+    }
+
+    public function onExportCsv($param = null) 
+    {
+        try
+        {
+            $output = 'app/output/'.uniqid().'.csv';
+
+            if ( (!file_exists($output) && is_writable(dirname($output))) OR is_writable($output))
+            {
+                $this->limit = 0;
+                $objects = $this->onReload();
+
+                if ($objects)
+                {
+                    $handler = fopen($output, 'w');
+                    TTransaction::open('projeto');
+
+                    foreach ($objects as $object)
+                    {
+                        $row = [];
+                        foreach ($this->datagrid->getColumns() as $column)
+                        {
+                            $column_name = $column->getName();
+
+                            if (isset($object->$column_name))
+                            {
+                                $row[] = is_scalar($object->$column_name) ? $object->$column_name : '';
+                            }
+                            else if (method_exists($object, 'render'))
+                            {
+                                $column_name = (strpos($column_name, '{') === FALSE) ? ( '{' . $column_name . '}') : $column_name;
+                                $row[] = $object->render($column_name);
+                            }
+                        }
+
+                        fputcsv($handler, $row);
+                    }
+
+                    fclose($handler);
+                    TTransaction::close();
+                }
+                else
+                {
+                    throw new Exception(_t('No records found'));
+                }
+
+                TPage::openFile($output);
+            }
+            else
+            {
+                throw new Exception(_t('Permission denied') . ': ' . $output);
+            }
+        }
+        catch (Exception $e) // in case of exception
+        {
+            new TMessage('error', $e->getMessage()); // shows the exception error message
+        }
+    }
+
+    public function onExportPdf($param = null) 
+    {
+        try
+        {
+            $output = 'app/output/'.uniqid().'.pdf';
+
+            if ( (!file_exists($output) && is_writable(dirname($output))) OR is_writable($output))
+            {
+                $this->limit = 0;
+                $this->datagrid->prepareForPrinting();
+                $this->onReload();
+
+                $html = clone $this->datagrid;
+                $contents = file_get_contents('app/resources/styles-print.html') . $html->getContents();
+
+                $dompdf = new \Dompdf\Dompdf;
+                $dompdf->loadHtml($contents);
+                $dompdf->setPaper('A4', 'portrait');
+                $dompdf->render();
+
+                file_put_contents($output, $dompdf->output());
+
+                $window = TWindow::create('PDF', 0.8, 0.8);
+                $object = new TElement('object');
+                $object->data  = $output;
+                $object->type  = 'application/pdf';
+                $object->style = "width: 100%; height:calc(100% - 10px)";
+
+                $window->add($object);
+                $window->show();
+            }
+            else
+            {
+                throw new Exception(_t('Permission denied') . ': ' . $output);
+            }
+        }
+        catch (Exception $e) // in case of exception
+        {
+            new TMessage('error', $e->getMessage()); // shows the exception error message
+        }
     }
 }

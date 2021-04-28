@@ -6,7 +6,7 @@ class Usuario extends TRecord
     const PRIMARYKEY = 'id';
     const IDPOLICY   =  'serial'; // {max, serial}
 
-    
+    use SystemChangeLogTrait;
 
     /**
      * Constructor method

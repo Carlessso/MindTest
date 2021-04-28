@@ -9,7 +9,7 @@ class UsuarioProva extends TRecord
     private $usuario;
     private $prova;
 
-    
+    use SystemChangeLogTrait;
 
     /**
      * Constructor method
