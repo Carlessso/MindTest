@@ -18,7 +18,7 @@ class Prova extends TRecord
     {
         parent::__construct($id, $callObjectLoad);
         parent::addAttribute('nome');
-        parent::addAttribute('sucinto');
+        parent::addAttribute('descricao');
         parent::addAttribute('minutos_realizacao');
         parent::addAttribute('cor_primaria');
         parent::addAttribute('cor_secundaria');
@@ -26,6 +26,8 @@ class Prova extends TRecord
         parent::addAttribute('is_publica');
         parent::addAttribute('inicio');
         parent::addAttribute('fim');            
+        parent::addAttribute('is_ordenada');            
+        parent::addAttribute('is_formulario_livre');            
     }
 
     /**

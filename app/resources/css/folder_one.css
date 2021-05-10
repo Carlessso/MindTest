@@ -17,11 +17,18 @@
     width: 100%;
 }
 
+.prova_form_title{
+    display: flex;
+    flex-direction: column;
+}
+
 .panel-title{
     font-family: Roboto;
     font-size: 30px;
-    color: aliceblue;
+    color: #FFFFFF;
     padding: 15px 0 0 35px;
+    background: #15202B;
+    border: none;
 }
 
 .panel-subtitle{
@@ -29,7 +36,9 @@
     font-size: 20px;
     line-height: 25px;
     color: #FFFFFF;
-    padding: 10px 0 15px 35px
+    padding: 10px 0 15px 35px;
+    background: #15202B;
+    border: none;
 }
 
 .panel-pessoa{
@@ -95,7 +104,7 @@
 }
 
 .prova-form .btn-group .btn-default {
-    border: 1px solid white !important;
+    border: 1px solid #999 !important;
 }
 
 .prova-form .tfieldlistprova-form td:last-child{
@@ -271,7 +280,7 @@
     margin: -15px 4px 10px 0;
     background-color: #63ccff !important;
     color: #15202b;
-    border: solid 1px white !important;
+    border: solid 1px #63ccff !important;
     width: 80px;
 }
 

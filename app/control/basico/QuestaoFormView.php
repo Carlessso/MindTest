@@ -245,9 +245,8 @@ class QuestaoFormView extends TPage
     {
         TTransaction::open('projeto');
         
-        // if($param['ref_prova'])
         $question = new Questao();
-        $question->prova_id = 1;
+        $question->prova_id = $param['ref_prova'];
         $question->store();
 
         TTransaction::close();
@@ -257,6 +256,8 @@ class QuestaoFormView extends TPage
         
         // action to load blank question 
         $param_question['register_state'] = 'false';
+        // $param_question['static'] = 1;
+        $param_question['ref_prova']      = $param['ref_prova'];
         $param_question['id']             = $question->id;
         $action = new TAction(['QuestaoFormView', 'onLoad'], $param_question);
         $action = $action->serialize();
@@ -264,7 +265,7 @@ class QuestaoFormView extends TPage
         //execute action to add blank question
         TScript::create("$(document).ready(function(){ change_page('{$question->id}', '{$action}'); });");
         
-        // TScript::create("document.getElementById('question_{$question->id}').scrollIntoView();");
+        TScript::create("document.getElementById('question_{$question->id}').scrollIntoView();");
         // document.getElementById('myDiv').scrollIntoView();    
     }
 

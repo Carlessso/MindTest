@@ -113,6 +113,15 @@ class ProvaHeaderList extends TPage
         $this->datagrid->addColumn($column_inicio);
         $this->datagrid->addColumn($column_fim);
 
+        $action_onEditProva = new TDataGridAction(array('ProvaFormView', 'onEdit'));
+        $action_onEditProva->setUseButton(false);
+        $action_onEditProva->setButtonClass('btn btn-default btn-sm');
+        $action_onEditProva->setLabel("Excluir");
+        $action_onEditProva->setImage('fas:envelope-open-text #ffae00');
+        $action_onEditProva->setField(self::$primaryKey);
+
+        $this->datagrid->addAction($action_onEditProva);
+
         $action_onEdit = new TDataGridAction(array('ProvaForm', 'onEdit'));
         $action_onEdit->setUseButton(false);
         $action_onEdit->setButtonClass('btn btn-default btn-sm');
