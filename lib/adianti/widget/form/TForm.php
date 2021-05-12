@@ -321,7 +321,7 @@ class TForm implements AdiantiFormInterface
      * @param $object An Active Record object
      */
     public function setData($object)
-    {
+    {   
         // iterate the form fields
         foreach ($this->fields as $name => $field)
         {

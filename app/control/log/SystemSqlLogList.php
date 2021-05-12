@@ -25,13 +25,14 @@ class SystemSqlLogList extends TStandardList
         
         parent::setDatabase('log');            // defines the database
         parent::setActiveRecord('SystemSqlLog');   // defines the active record
-        parent::setDefaultOrder('id', 'asc');         // defines the default order
+        parent::setDefaultOrder('logdate', 'desc');         // defines the default order
         parent::addFilterField('login', 'like'); // add a filter field
         parent::addFilterField('database_name', 'like'); // add a filter field
         parent::addFilterField('sql_command', 'like'); // add a filter field
         parent::addFilterField('class_name', 'like'); // add a filter field
         parent::addFilterField('session_id', 'like'); // add a filter field
         parent::addFilterField('request_id', '='); // add a filter field
+        parent::addFilterField("to_char(logdate, 'y-m-d')", '='); // add a filter field    
         parent::setLimit(20);
         
         // creates the form, with a table inside
@@ -45,12 +46,13 @@ class SystemSqlLogList extends TStandardList
         $class_name  = new TEntry('class_name');
         $session_id  = new TEntry('session_id');
         $request_id  = new TEntry('request_id');
-
+        $logdate     = new TDate('logdate');
 
         // add the fields
         $this->form->addFields( [new TLabel(_t('Login'))], [$login], [new TLabel(_t('Program'))], [$class_name] );
         $this->form->addFields( [new TLabel(_t('Database'))], [$database], [new TLabel(_t('Session'))], [$session_id] );
-        $this->form->addFields( [new TLabel('SQL')], [$sql], [new TLabel(_t('Request'))], [$request_id] );
+        $this->form->addFields( [new TLabel('SQL')], [$sql], [new TLabel(_t('Request'))], [$request_id]);
+        $this->form->addFields( [new TLabel('Data')], [$logdate] );
         
         // keep the form filled during navigation with session data
         $this->form->setData( TSession::getValue('SystemSqlLog_filter_data') );
@@ -177,6 +179,7 @@ class SystemSqlLogList extends TStandardList
         
         $criteria = new TCriteria;
         $criteria->add(new TFilter('session_id', 'like', $param['session_id']));
+        $criteria->setProperty('order', 'logdate desc');
         parent::setCriteria($criteria);
         
         $this->onReload($param);
@@ -195,6 +198,7 @@ class SystemSqlLogList extends TStandardList
         
         $criteria = new TCriteria;
         $criteria->add(new TFilter('request_id', '=', $param['request_id']));
+        $criteria->setProperty('order', 'logdate desc');
         parent::setCriteria($criteria);
         
         $this->onReload($param);

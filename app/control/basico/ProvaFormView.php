@@ -26,17 +26,17 @@ class ProvaFormView extends TPage
 
         $this->html = new THtmlRenderer('app/resources/html/folder_one.html');
         
-        $form       = $this->makeFormularioProva($param);
-        $form_title = $this->makeFormulario($param);
+        $this->form       = $this->makeFormularioProva($param);
+        $this->form_title = $this->makeFormularioTitle($param);
         
-        $this->html->enableSection('main', array('form_title' => $form_title, 'form' => $form));
+        $this->html->enableSection('main', array('form_title' => $this->form_title, 'form' => $this->form));
         
         parent::add($this->html);
     }
     
-    public function makeFormulario($param)
+    public function makeFormularioTitle($param)
     {
-        $form = new TForm('prova_form_title');
+        $this->form_title = new TForm('prova_form_title');
         
         $pergunta = new TEntry('nome');
         $resposta = new TEntry('descricao');
@@ -50,15 +50,16 @@ class ProvaFormView extends TPage
         $pergunta->setValue('Título do formulário');
         $resposta->setValue('Descrição');
         
-        $row = $form->add($pergunta);
-        $row = $form->add($resposta);
+        $this->form_title->setFields([$pergunta, $resposta]);
+        $this->form_title->add($pergunta);
+        $this->form_title->add($resposta);
 
-        return $form;
+        return $this->form_title;
     }
 
     public function makeFormularioProva($param)
     {
-        $this->form = new BootstrapFormBuilder('teste');
+        $this->form = new BootstrapFormBuilder('prova_form_body');
 
         $id             = new THidden('id');
         $dt_inicio      = new TDate('dt_inicio');
@@ -140,43 +141,51 @@ class ProvaFormView extends TPage
 
     public static function onSave($param)
     {
-        TTransaction::open('projeto');
-        
-        $minutos = 0;
-        $minutos += $param['dias'] * 1440;
-        $minutos += $param['horas'] * 60;
-        $minutos += $param['minutos'];
-
-        if($param['dt_inicio'])
+        try 
         {
-            $inicio = $param['dt_inicio'] . ' ' . $param['hr_inicio'];
+            TTransaction::open('projeto');
+            
+            $minutos = 0;
+            $minutos += $param['dias'] * 1440;
+            $minutos += $param['horas'] * 60;
+            $minutos += $param['minutos'];
+            
+            if($param['dt_inicio'])
+            {
+                $inicio = $param['dt_inicio'] . ' ' . $param['hr_inicio'];
+            }
+            if($param['dt_fim'])
+            {
+                $fim    = $param['dt_fim'] . ' ' . $param['hr_fim'];
+            }
+            
+            $prova                      = new Prova($param['id']);
+            $prova->nome                = $prova->nome ?? 'Título do formulário';
+            $prova->usuario_responsavel = 1;
+            $prova->minutos_realizacao  = $minutos;
+            $prova->inicio              = $inicio;
+            $prova->fim                 = $fim;
+            $prova->cor_primaria        = $param['cor_primaria'];
+            $prova->cor_secundaria      = $param['cor_secundaria'];
+            $prova->is_publica          = FALSE;
+            $prova->is_ordenada         = $param['is_ordenada'];
+            $prova->is_formulario_livre = $param['is_formulario_livre'];
+            
+            $prova->store();
+            
+            $form = TForm::getFormByName('prova_form_title');
+            
+            TTransaction::close();
+            
+            TScript::create("__adianti_post_data('prova_form_title', 'class=ProvaFormView&method=onSaveTitle&static=1&id={$prova->id}');");
+            
+            TToast::show('success', 'Registro salvo com sucesso');
         }
-        if($param['dt_fim'])
+        catch (\Throwable $th) 
         {
-            $fim    = $param['dt_fim'] . ' ' . $param['hr_fim'];
+            TToast::show('erro', 'Ocorreu um erro ao salvar');
+            TTransaction::rollback();
         }
-
-        $prova                      = new Prova($param['id']);
-        $prova->nome                = $prova->nome ?? 'Título do formulário';
-        $prova->usuario_responsavel = 1;
-        $prova->minutos_realizacao  = $minutos;
-        $prova->inicio              = $inicio;
-        $prova->fim                 = $fim;
-        $prova->cor_primaria        = $param['cor_primaria'];
-        $prova->cor_secundaria      = $param['cor_secundaria'];
-        $prova->is_publica          = FALSE;
-        $prova->is_ordenada         = $param['is_ordenada'];
-        $prova->is_formulario_livre = $param['is_formulario_livre'];
-
-        $prova->store();
-        
-        $form = TForm::getFormByName('prova_form_title');
-
-        var_dump($form);
-
-        TTransaction::close();
-        
-        TScript::create("__adianti_post_data('prova_form_title', 'class=ProvaFormView&method=onSaveTitle&static=1&id={$prova->id}');");  
     }
     
     public static function onSaveTitle($param)
@@ -187,7 +196,6 @@ class ProvaFormView extends TPage
         $prova->nome      = $param['nome'];
         $prova->descricao = $param['descricao'];
 
-        var_dump($prova);
         $prova->store();
 
         TTransaction::close();
@@ -217,7 +225,21 @@ class ProvaFormView extends TPage
         $prova->is_ordenada         = $prova->is_ordenada ? 0 : 1; 
         $prova->is_formulario_livre = $prova->is_formulario_livre ? 0 : 1;
         
+        $object            = new StdClass();
+        $object->nome      = $prova->nome;
+        $object->descricao = $prova->descricao;
+
         $this->form->setData($prova);
+        $this->form_title->setData($object);
+
+        $questoes = Questao::where('prova_id', '=', $param['key'])->load();
+        
+        var_dump($param['key']);
+        
+        foreach ($questoes as $questao) 
+        {
+            QuestaoFormView::addQuestion(['ref_prova' => $param['key']]);
+        }
         
         TTransaction::close();
     }
@@ -242,8 +264,7 @@ class ProvaFormView extends TPage
         }
     
         TTransaction::close();
-    
-    
+        
         QuestaoFormView::addQuestion(['ref_prova' => $prova->id]);
     }
 }
