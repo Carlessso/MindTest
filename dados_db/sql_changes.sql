@@ -15,3 +15,5 @@ ALTER TABLE prova ADD column is_ordenada BOOLEAN DEFAULT true;
 ALTER TABLE prova ADD column is_formulario_livre BOOLEAN DEFAULT true;
 ALTER TABLE prova ADD column descricao TEXT;
 ALTER TABLE prova DROP column sucinto;
+
+ALTER TABLE questao ALTER COLUMN is_multipla_escolha DROP DEFAULT

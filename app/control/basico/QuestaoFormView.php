@@ -50,13 +50,25 @@ class QuestaoFormView extends TPage
         $add_question_action    = new TAction(['QuestaoFormView', 'addQuestion'], $param);
         $delete_question_action = new TAction(['QuestaoFormView', 'deleteQuestion'], $param);
         
-        if(FALSE)
+        TTransaction::open('projeto');
+
+        $questao = new Questao($param['key']);
+
+        TTransaction::close();
+
+
+        if(is_null($questao->fl_multipla_escolha))
         {
-            //make select question
-        }
-        elseif(FALSE)
-        {
-            //make text questio
+            if($questao->fl_multipla_escolha)
+            {
+                // make select question
+                self::makeTextQuestion($param);
+            }
+            else
+            {
+                // make text question
+                self::makeSelectQuestion($param);
+            }
         }
         else
         {
@@ -64,13 +76,13 @@ class QuestaoFormView extends TPage
             $text_action   = new TAction(['QuestaoFormView', 'replaceQuestion'], $param);
             $param['type'] = 'select';
             $select_action = new TAction(['QuestaoFormView', 'replaceQuestion'], $param);
-
+            
             $param['text_action']            = $text_action->serialize();
             $param['select_action']          = $select_action->serialize();
             $param['add_question_action']    = $add_question_action->serialize();
             $param['delete_question_action'] = $delete_question_action->serialize();
             $param['register_state']         = FALSE;
-
+            
             $this->html->enableSection('main', $param);
         }
 
@@ -269,6 +281,25 @@ class QuestaoFormView extends TPage
         // document.getElementById('myDiv').scrollIntoView();    
     }
 
+    public static function editQuestion($param)
+    {
+        TScript::create("$('.panel-question-body').append('<div id=\"question_{$param['key']}\"></div>');");
+        
+        // action to load blank question 
+        $param_question['register_state'] = FALSE; 
+        $param_question['ref_prova']      = $param['ref_prova'];
+        $param_question['id']             = $param['key'];
+        $action = new TAction(['QuestaoFormView', 'onLoad'], $param_question);
+        $action = $action->serialize();
+        
+        //execute action to add blank question
+        TScript::create("$(document).ready(function(){ change_page('{$param['key']}', '{$action}'); });");
+        
+        TScript::create("document.getElementById('question_{$param['key']}').scrollIntoView();");
+        // document.getElementById('myDiv').scrollIntoView();    
+    }
+
+
     public static function deleteQuestion($param)
     {
         try 
@@ -318,6 +349,8 @@ class QuestaoFormView extends TPage
                         $alternativa->questao_id =  $param['id'];
                         $alternativa->store();
                     }
+
+                    $param['is_multipla_escolha'] = TRUE;
                 }
                 else
                 {

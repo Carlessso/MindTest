@@ -153,8 +153,6 @@ class PanelQuestionFormView extends TPage
 
     public static function replaceTextQuestion($param)
     {
-        var_dump($param);
-
         $form_text = self::makeTextQuestion();
         $config_text = self::makeFormTextQuestion();
         

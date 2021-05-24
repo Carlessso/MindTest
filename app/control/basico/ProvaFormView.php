@@ -234,11 +234,9 @@ class ProvaFormView extends TPage
 
         $questoes = Questao::where('prova_id', '=', $param['key'])->load();
         
-        var_dump($param['key']);
-        
         foreach ($questoes as $questao) 
         {
-            QuestaoFormView::addQuestion(['ref_prova' => $param['key']]);
+            QuestaoFormView::editQuestion(['key' => $questao->id]);
         }
         
         TTransaction::close();
