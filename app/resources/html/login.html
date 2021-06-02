@@ -1,0 +1,79 @@
+<html>
+    
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="app/resources/css/login.css?v2">
+    </head>
+
+    <body class="styled-background">
+
+        <div class="logo">
+            Mind Test
+        </div>
+
+        <div class="login-display">
+            
+            <form class="form-horizontal" type="bootstrap" novalidate="" enctype="multipart/form-data" name="form_login" id="form_login" method="post">
+                <div class="login-body">
+                    <div class="login-form">
+                        <div class="login-form-title">
+                            <h2 class="title"> Seja bem vindo! </h2>
+                            <h5 class="subtitle"> Estamos muito animados em te ter novamente </h5>
+                        </div>
+                        <div class="login-form-fields">
+                            <h5 class="label-form">
+                                E-mail ou numero de telefone
+                            </h5>
+                            <input class="imput-form" widget="tentry" type="text" name="login" value="">
+                            
+                            <h5 class="label-form"> 
+                                Senha 
+                            </h5>
+                            <input name="password" type="password" class="imput-form">
+                            <div class="reset-password">
+                                Esqueceu sua senha?
+                            </div>
+                            <button id="tbutton_btn_login" name="btn_login" class="form-button" onclick="Adianti.waitMessage = 'Carregando';__adianti_post_data('form_login', 'login?method=onLogin&amp;static=1&amp;static=1');return false;"><span>Entrar</span>
+                            </button>
+
+                            <div class="sign-up">
+                                Registre-se
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="qr_code" style="width: 40%;">
+                        <div class="">
+                            <div style="overflow: visible;opacity: 1;height: 100%;transform: translateX(0%);margin: 30px 0px;">
+                                <div class="" style="text-align: center;">
+                                    <div class="">
+                                    <div class="" style="padding: 4px;border-radius: 4px;background: rgb(255, 255, 255);margin: 0px;width: 160px;margin: auto;" title="https://discord.com/ra/kV82d_g2hnvN-V26tXFLfscW9E9nkJmHXiFIY2VkFy4">
+                                        <div width="160" height="160">
+                                            <img src="https://tecnoblog.net/meiobit/wp-content/uploads/qrcode.png" style="width: 160px;height: 160px;margin: 0px;">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="title" style="margin: 20px;">
+                                        Entrar com Código QR
+                                    </div>
+                                    <div class="subtitle">
+                                        Escaneie com <strong>seu celular </strong> para fazer login imediatamente.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                </div>
+            </form>
+        </div>
+    
+
+</body>
+
+</html>

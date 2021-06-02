@@ -1,0 +1,156 @@
+body {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+.logo {
+    float: right;
+    position: absolute;
+    right: 0;
+    font-weight: bold;
+    font-family: 'Libre Barcode 39 Text', cursive;
+    margin: auto;
+    font-size: 35px;
+    color: #15202B;
+    padding: 10px 20px;
+}
+
+.styled-background {
+    background: #fff
+}
+
+.login-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    height: 700px;
+}
+
+.login-body {
+    background: #15202B;
+    width: 600px;
+    height: 420px;
+    border-radius: 5px;
+    padding: 35px;
+    display: inline-flex;
+    color: #8e9297;
+    justify-content: center;
+}
+
+.login-form {
+    width: 60%;
+    color: #c1c1c1;   
+}
+
+.login-form-title {
+    text-align: center;
+}
+
+.login-form-fields {
+    margin: 25px 10px;
+}
+
+.title {
+    margin: 0px; color: #63ccff;
+}
+
+.subtitle {
+    margin: 8px 0px;
+    font-size: 15px;
+    font-weight: 100;
+    color: #63ccff;
+}
+
+.label-form {
+    margin: 20px 0px 7px 0px;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.imput-form {
+    width: 100%;
+    height: 40px;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #292a2d;
+    background: #fff;
+    color:#15202B
+}
+
+.reset-password {
+    text-decoration: none;
+    padding: 0;
+    border: aliceblue;
+    background: none;
+    width: 100%;
+    float: right;
+    display: flex;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #fff;
+}
+
+.form-button {
+    border: none;
+    background: #63ccff;
+    height: 44px;
+    width: 100%;
+    border-radius: 2px;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #000;
+}
+
+.sign-up {
+    text-decoration: none;
+    padding: 0;
+    border: aliceblue;
+    background: none;
+    width: 100%;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.qr_code {
+    display: none;
+  }
+
+  .login-form {
+      width: 100%;
+  }
+
+
+
+@media screen and (max-width: 580px) {
+    .login-body {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-form {
+        position: absolute;
+    }
+
+    .login-form-title {
+        margin: 20px;
+    }
+
+    .login-form-fields {
+        margin: 20px;
+    }
+
+    .logo{
+        text-align: center;
+        right: 0;
+        left: 0;
+    }
+
+} 

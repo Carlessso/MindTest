@@ -52,12 +52,12 @@ class QuestaoFormView extends TPage
         
         TTransaction::open('projeto');
 
-        $questao = new Questao($param['key']);
+        $questao = new Questao($param['id']);
 
         TTransaction::close();
 
 
-        if(is_null($questao->fl_multipla_escolha))
+        if(is_null($questao->fl_multipla_escolha) AND FALSE)
         {
             if($questao->fl_multipla_escolha)
             {
@@ -256,11 +256,9 @@ class QuestaoFormView extends TPage
     public static function addQuestion($param)
     {
         TTransaction::open('projeto');
-        
         $question = new Questao();
         $question->prova_id = $param['ref_prova'];
         $question->store();
-
         TTransaction::close();
         
         //append div to add question
@@ -268,7 +266,6 @@ class QuestaoFormView extends TPage
         
         // action to load blank question 
         $param_question['register_state'] = 'false';
-        // $param_question['static'] = 1;
         $param_question['ref_prova']      = $param['ref_prova'];
         $param_question['id']             = $question->id;
         $action = new TAction(['QuestaoFormView', 'onLoad'], $param_question);
@@ -282,13 +279,18 @@ class QuestaoFormView extends TPage
     }
 
     public static function editQuestion($param)
-    {
+    {        
+        TTransaction::open('projeto');
+        $question = new Questao($param['key']);
+        $question->store();
+        TTransaction::close();
+
         TScript::create("$('.panel-question-body').append('<div id=\"question_{$param['key']}\"></div>');");
-        
+
         // action to load blank question 
-        $param_question['register_state'] = FALSE; 
-        $param_question['ref_prova']      = $param['ref_prova'];
-        $param_question['id']             = $param['key'];
+        $param_question['register_state'] = 'false'; 
+        $param_question['ref_prova']      = $question->ref_prova;
+        $param_question['id']             = $question->id;
         $action = new TAction(['QuestaoFormView', 'onLoad'], $param_question);
         $action = $action->serialize();
         

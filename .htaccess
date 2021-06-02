@@ -112,8 +112,8 @@ RewriteRule ^xhr-system-shared-document-list$ engine.php?class=SystemSharedDocum
 RewriteRule ^welcome-view$ index.php?class=WelcomeView&%{QUERY_STRING} [NC]
 RewriteRule ^xhr-welcome-view$ engine.php?class=WelcomeView&%{QUERY_STRING} [NC]
 
-RewriteRule ^login-form$ index.php?class=LoginForm&%{QUERY_STRING} [NC]
-RewriteRule ^xhr-login-form$ engine.php?class=LoginForm&%{QUERY_STRING} [NC]
+RewriteRule ^administrativo$ index.php?class=LoginForm&%{QUERY_STRING} [NC]
+RewriteRule ^xhr-administrativo$ engine.php?class=LoginForm&%{QUERY_STRING} [NC]
 
 #AUTH routes
 RewriteRule ^auth/([A-Za-z0-9]*)/([A-Za-z0-9]*)$ rest.php?class=ApplicationAuthenticationRestService&method=getToken&login=$1&password=$2&%{QUERY_STRING} [NC]
@@ -130,9 +130,17 @@ RewriteRule ^xhr-contact-ondelete$ engine.php?class=ContactList&method=onDelete&
 RewriteRule ^xhr-contact-delete$ engine.php?class=ContactList&method=Delete&%{QUERY_STRING} [NC]
 
 
-
 #RESTFUL routes
 RewriteRule ^contacts/([A-Za-z0-9]*)$ rest.php?class=ContactRestService&method=handle&id=$1&%{QUERY_STRING} [NC]
 RewriteRule ^contacts/([A-Za-z-_0-9]*)/([A-Za-z-_0-9]*)$ rest.php?class=ContactRestService&method=$2&id=$1&%{QUERY_STRING} [NC]
 RewriteRule ^contacts$ rest.php?class=ContactRestService&method=handle&%{QUERY_STRING} [NC]
 
+
+RewriteRule ^login$ index.php?class=LoginUsuario&%{QUERY_STRING} [NC]
+RewriteRule ^xhr-login$ engine.php?class=LoginUsuario&%{QUERY_STRING} [NC]
+
+RewriteRule ^provas$ index.php?class=ProvasView&%{QUERY_STRING} [NC]
+RewriteRule ^xhr-provas$ engine.php?class=ProvasView&%{QUERY_STRING} [NC]
+
+RewriteRule ^registro-prova$ index.php?class=ProvaFormView&%{QUERY_STRING} [NC]
+RewriteRule ^xhr-registro-prova$ engine.php?class=ProvaFormView&%{QUERY_STRING} [NC]

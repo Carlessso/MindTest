@@ -86,7 +86,10 @@ class ProvaFormView extends TPage
         $cor_primaria->setSize('100%');
         $cor_secundaria->setSize('100%');
 
-        $id->setValue($param['id']);
+        if(! empty($param['id']))
+        {
+            $id->setValue($param['id']);
+        }
 
         $dias->setValue(0);
         $horas->setValue(0);

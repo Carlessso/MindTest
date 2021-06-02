@@ -168,7 +168,6 @@ class LoginForm extends TPage
             
             TSession::regenerate();
             $user = ApplicationAuthenticationService::authenticate( $data->login, $data->password );
-            
             if ($user)
             {
                 ApplicationAuthenticationService::setUnit( $data->unit_id ?? null );

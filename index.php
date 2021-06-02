@@ -9,7 +9,7 @@ if (in_array($class, $ini['permission']['main_classes']))
     $theme = 'prova';
 }
 
-// AdiantiCoreApplication::setRouter(array('AdiantiRouteTranslator', 'translate'));
+AdiantiCoreApplication::setRouter(array('AdiantiRouteTranslator', 'translate'));
 
 new TSession;
 ApplicationTranslator::setLanguage( TSession::getValue('user_language'), true );
