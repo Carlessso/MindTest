@@ -68,7 +68,7 @@ class LoginUsuario extends TPage
     public static function onLogin($param)
     {
         $ini  = AdiantiApplicationConfig::get();
-        
+
         try
         {
             $data = (object) $param;
@@ -87,8 +87,8 @@ class LoginUsuario extends TPage
             {
                 ApplicationAuthenticationService::setUnit( $data->unit_id ?? null );
                 ApplicationAuthenticationService::setLang( $data->lang_id ?? null );
+
                 SystemAccessLogService::registerLogin();
-                
                 AdiantiCoreApplication::gotoPage("ProvasView"); // reload
 
                 $frontpage = $user->frontpage;
