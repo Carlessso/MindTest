@@ -249,23 +249,20 @@ class ProvaFormView extends TPage
     {
         TTransaction::open('projeto');
 
-        if($this->id == NULL)
-        {
-            $prova = new Prova();
-            $prova->nome                = 'Título';
-            $prova->descricao           = 'Descrição';
-            $prova->cor_primaria        = '#63CCFF';
-            $prova->cor_secundaria      = '#15202B';
-            $prova->usuario_responsavel = 1;
-            $prova->store();
-        }
-        else
-        {
-            $prova = new Prova($this->id);
-        }
-    
+        $prova                      = new Prova();
+        $prova->nome                = 'Título';
+        $prova->descricao           = 'Descrição';
+        $prova->cor_primaria        = '#63CCFF';
+        $prova->cor_secundaria      = '#15202B';
+        $prova->usuario_responsavel = 1;
+        $prova->store();
+
+        $questao            = new Questao();
+        $questao->prova_id = $prova->id;
+        $questao->store();
+
         TTransaction::close();
-        
-        QuestaoFormView::addQuestion(['ref_prova' => $prova->id]);
+
+        TApplication::loadPage('ProvaFormView', 'onEdit', ['key' => $prova->id]); 
     }
 }
