@@ -31,10 +31,7 @@ class ProvasView extends TPage
 
         $provas      = Prova::getObjects();
         $provas_html = $this->makeProvas($provas);
-        // $this->form_title = $this->makeFormularioTitle($param);
-        
-        // $this->html->enableSection('main', array('form_title' => $this->form_title, 'form' => $this->form));
-        
+
         parent::add($this->html);
         parent::add($provas_html);
 
@@ -53,9 +50,13 @@ class ProvasView extends TPage
 
         foreach ($provas as $prova)
         {
-            $replaces = array('prova_id' => $prova->id,
-                              'titulo'   => $prova->nome,
-                              'datas'    => $prova->inicio);
+            $action_delete = new TAction(['ProvasView', 'onDelete'], ['prova_id' => $prova->id, 'static' => 1]);
+
+            $replaces = array('prova_id'      => $prova->id,
+                              'titulo'        => $prova->nome,
+                              'datas'         => $prova->inicio,
+                              'action_delete' => $action_delete->serialize()
+                            );
 
             $template = new THtmlRenderer('app/resources/html/prova_div.html');
             $template->enableSection('main', $replaces);
@@ -64,6 +65,52 @@ class ProvasView extends TPage
         }
 
         return $row;
+    }
+
+    public function onDelete($param)
+    {
+        if(isset($param['delete_prova']) && $param['delete_prova'] == 1)
+        {
+            try
+            {
+                if($param['prova_id'])
+                {
+                    TTransaction::open('projeto');
+
+                    $prova = new Prova($param['prova_id']);
+                    $prova->delete();            
+                    
+                    TTransaction::close();
+                    
+                    TApplication::loadPage('ProvasView', 'onLoad', $loadPageParam); 
+                    
+                    TToast::show('success', AdiantiCoreTranslator::translate('Record deleted'), 'topRight', 'far:check-circle');
+                }
+                else
+                {
+                    throw new Exception("Error Processing Request", 1);
+                }
+            }
+            catch (Exception $e) // in case of exception
+            {
+                // shows the exception error message
+                new TMessage('error', $e->getMessage());
+                // undo all pending operations
+                TTransaction::rollback();
+            }
+        }
+        else
+        {
+            $action = new TAction(array($this, 'onDelete'));
+            $action->setParameters($param); // pass the key paramseter ahead
+            $action->setParameter('delete_prova', 1);
+            new TQuestion(AdiantiCoreTranslator::translate('Do you really want to delete ?'), $action);   
+        }
+    }
+
+    public function onLoad()
+    {
+
     }
 
 }

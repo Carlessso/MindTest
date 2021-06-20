@@ -1,0 +1,156 @@
+[20-Jun-2021 16:56:43 America/Sao_Paulo] PHP Fatal error:  Uncaught Exception: Error Processing Request in /var/www/html/MindTest/app/control/basico/ProvasView.php:84
+Stack trace:
+#0 [internal function]: ProvasView->onDelete()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 84
+[20-Jun-2021 16:57:13 America/Sao_Paulo] PHP Fatal error:  Uncaught Exception: Error Processing Request in /var/www/html/MindTest/app/control/basico/ProvasView.php:84
+Stack trace:
+#0 [internal function]: ProvasView->onDelete()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 84
+[20-Jun-2021 16:58:30 America/Sao_Paulo] PHP Fatal error:  Uncaught Exception: Sem transação ativa com a base de dados: Adianti\Database\TRepository::load alternativa in /var/www/html/MindTest/lib/adianti/database/TRepository.php:285
+Stack trace:
+#0 /var/www/html/MindTest/lib/adianti/database/TRecord.php(1057): Adianti\Database\TRepository->load()
+#1 /var/www/html/MindTest/app/model/Questao.php(73): Adianti\Database\TRecord::getObjects()
+#2 /var/www/html/MindTest/app/model/Questao.php(183): Questao->getAlternativas()
+#3 /var/www/html/MindTest/app/control/basico/ProvasView.php(76): Questao->delete()
+#4 [internal function]: ProvasView->onDelete()
+#5 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#6 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#7 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#8 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/database/TRepository.php on line 285
+[20-Jun-2021 16:59:26 America/Sao_Paulo] PHP Fatal error:  Uncaught Exception: Arquivo não encontrado: 'prova_online.ini' in /var/www/html/MindTest/lib/adianti/database/TConnection.php:44
+Stack trace:
+#0 /var/www/html/MindTest/lib/adianti/database/TTransaction.php(59): Adianti\Database\TConnection::open()
+#1 /var/www/html/MindTest/app/control/basico/ProvasView.php(75): Adianti\Database\TTransaction::open()
+#2 [internal function]: ProvasView->onDelete()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/database/TConnection.php on line 44
+[20-Jun-2021 17:01:22 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in /var/www/html/MindTest/lib/adianti/database/TFilter.php:58
+Stack trace:
+#0 /var/www/html/MindTest/lib/adianti/database/TFilter.php(58): is_array()
+#1 /var/www/html/MindTest/lib/adianti/database/TFilter.php(178): Adianti\Database\TFilter->transform()
+#2 /var/www/html/MindTest/lib/adianti/database/TCriteria.php(143): Adianti\Database\TFilter->dump()
+#3 /var/www/html/MindTest/lib/adianti/database/TSqlSelect.php(75): Adianti\Database\TCriteria->dump()
+#4 /var/www/html/MindTest/lib/adianti/database/TSqlSelect.php(55): Adianti\Database\TSqlSelect->getStandardInstruction()
+#5 /var/www/html/MindTest/lib/adianti/database/TRepository.php(226): Adianti\Database\TSqlSelect->getInstruction()
+#6 /var/www/html/MindTest/lib/adianti/database/TRecord.php(1057): Adianti\Database\TRepository->load()
+#7 /var/www/html/MindTest/app/model/Prova.php(85): Adianti\Database\TRecord::getObjects()
+#8 /var/www/html/MindTest/app/model/Prova.php(210): Prova->getQue in /var/www/html/MindTest/lib/adianti/database/TFilter.php on line 58
+[20-Jun-2021 17:01:24 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in /var/www/html/MindTest/lib/adianti/database/TFilter.php:58
+Stack trace:
+#0 /var/www/html/MindTest/lib/adianti/database/TFilter.php(58): is_array()
+#1 /var/www/html/MindTest/lib/adianti/database/TFilter.php(178): Adianti\Database\TFilter->transform()
+#2 /var/www/html/MindTest/lib/adianti/database/TCriteria.php(143): Adianti\Database\TFilter->dump()
+#3 /var/www/html/MindTest/lib/adianti/database/TSqlSelect.php(75): Adianti\Database\TCriteria->dump()
+#4 /var/www/html/MindTest/lib/adianti/database/TSqlSelect.php(55): Adianti\Database\TSqlSelect->getStandardInstruction()
+#5 /var/www/html/MindTest/lib/adianti/database/TRepository.php(226): Adianti\Database\TSqlSelect->getInstruction()
+#6 /var/www/html/MindTest/lib/adianti/database/TRecord.php(1057): Adianti\Database\TRepository->load()
+#7 /var/www/html/MindTest/app/model/Prova.php(85): Adianti\Database\TRecord::getObjects()
+#8 /var/www/html/MindTest/app/model/Prova.php(210): Prova->getQue in /var/www/html/MindTest/lib/adianti/database/TFilter.php on line 58
+[20-Jun-2021 17:44:55 America/Sao_Paulo] PHP Fatal error:  Uncaught Exception: Parâmetro (erro) inválido em Adianti\Widget\Dialog\TToast::show in /var/www/html/MindTest/lib/adianti/widget/dialog/TToast.php:35
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvaFormView.php(189): Adianti\Widget\Dialog\TToast::show()
+#1 [internal function]: ProvaFormView::onSave()
+#2 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(69): call_user_func()
+#3 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#4 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#5 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/widget/dialog/TToast.php on line 35
+[20-Jun-2021 18:00:05 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function getElementById() in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:301
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvaFormView.php(242): QuestaoFormView::editQuestion()
+#1 [internal function]: ProvaFormView->onEdit()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#3 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#4 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#5 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#6 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#7 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 301
+[20-Jun-2021 19:20:00 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'SystemErrorLog' not found in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:42
+Stack trace:
+#0 [internal function]: QuestaoFormView->onLoad()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 42
+[20-Jun-2021 19:20:00 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'SystemErrorLog' not found in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:42
+Stack trace:
+#0 [internal function]: QuestaoFormView->onLoad()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 42
+[20-Jun-2021 19:30:29 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'SystemErrorLog' not found in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:42
+Stack trace:
+#0 [internal function]: QuestaoFormView->onLoad()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 42
+[20-Jun-2021 19:30:33 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function setValue() on null in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:239
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/QuestaoFormView.php(260): QuestaoFormView::makeSelectQuestion()
+#1 /var/www/html/MindTest/app/control/basico/QuestaoFormView.php(59): QuestaoFormView::replaceQuestion()
+#2 /var/www/html/MindTest/app/control/basico/QuestaoFormView.php(33): QuestaoFormView->makeQuestion()
+#3 [internal function]: QuestaoFormView->onLoad()
+#4 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#5 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#6 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#7 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#8 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#9 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 239
+[20-Jun-2021 19:30:59 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'SystemErrorLog' not found in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:42
+Stack trace:
+#0 [internal function]: QuestaoFormView->onLoad()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 42
+[20-Jun-2021 19:32:15 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function addDetail() on array in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:240
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/QuestaoFormView.php(265): QuestaoFormView::makeSelectQuestion()
+#1 /var/www/html/MindTest/app/control/basico/QuestaoFormView.php(59): QuestaoFormView::replaceQuestion()
+#2 /var/www/html/MindTest/app/control/basico/QuestaoFormView.php(33): QuestaoFormView->makeQuestion()
+#3 [internal function]: QuestaoFormView->onLoad()
+#4 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#5 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#6 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#7 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#8 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#9 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 240
+[20-Jun-2021 19:34:04 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'SystemErrorLog' not found in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php:42
+Stack trace:
+#0 [internal function]: QuestaoFormView->onLoad()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 42

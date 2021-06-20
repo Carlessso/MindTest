@@ -178,6 +178,15 @@ class Questao extends TRecord
         return implode(', ', $values);
     }
 
+    public function delete()
+    {
+        $alternativas = $this->getAlternativas();
+        foreach ($alternativas as $key => $alternativa) {
+            $alternativa->delete();
+        }
+
+        parent::delete();
+    }
     
 }
 

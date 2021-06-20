@@ -98,4 +98,19 @@ function change_page(id_question, action)
     var url = 'index.php?class=ProvaFormView&';
 }
 
+function change_modalidade()
+{
+    var professor = $('#modalidade_professor');
+    var aluno     = $('#modalidade_aluno');
 
+    if( professor.css('display') == 'none' )
+    {
+        professor.show();
+        aluno.hide();
+    }
+    else
+    {
+        professor.hide();
+        aluno.show();
+    }
+}

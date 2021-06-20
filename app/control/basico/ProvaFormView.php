@@ -235,7 +235,7 @@ class ProvaFormView extends TPage
         $this->form->setData($prova);
         $this->form_title->setData($object);
 
-        $questoes = Questao::where('prova_id', '=', $param['key'])->load();
+        $questoes = Questao::where('prova_id', '=', $param['key'])->orderBy('id', 'asc')->load();
         
         foreach ($questoes as $questao) 
         {
@@ -248,7 +248,7 @@ class ProvaFormView extends TPage
     public function onView($param)
     {
         TTransaction::open('projeto');
-    
+
         if($this->id == NULL)
         {
             $prova = new Prova();

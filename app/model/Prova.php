@@ -205,6 +205,16 @@ class Prova extends TRecord
         return implode(', ', $values);
     }
 
+    public function delete()
+    {
+        $questoes = $this->getQuestaos();
+        foreach ($questoes as $key => $questao) {
+            $questao->delete();
+        }
+
+        parent::delete();
+    }
     
+
 }
 

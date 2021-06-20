@@ -1,16 +1,31 @@
 <!--[main]-->
-    <div class="col-sm-3 col-md-3 col-xs-12" id="prova_{$prova_id}" >
-        <div style="margin: 5px; margin-bottom: 20px; border: 1px solid; padding: 20px; cursor: pointer;">
-            <a href="index.php?class=ProvaFormView&method=onEdit&key={$prova_id}&id={$prova_id}" generator="adianti" style="color:#333; text-decoration: none;">
-                <div class="content-box" >
-                    <div style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
-                        {$titulo}
-                    </div>
-                    <small style="font-size: 11px; color: #aaa;">
-                        {$datas}
-                    </small>
+    <div class="col-sm-12 col-md-4 col-xl-3" id="prova_{$prova_id}" >
+        <div style="margin: 5px; border: 1px solid; padding: 10px; cursor: pointer; height: 100px; display: flex;">
+            <div style="width: 100%; display: flex; align-items: center;">
+                <div class="content-box">
+                    <a href="index.php?class=ProvaFormView&method=onEdit&key={$prova_id}&id={$prova_id}" generator="adianti" style="color:#333; text-decoration: none;">
+                        <div style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis; font-size: 20px;">
+                            {$titulo}
+                        </div>
+                        <small style="font-size: 15px; color: #aaa;">
+                            {$datas}
+                        </small>
+                    </a>
                 </div>
-            </a>
+            </div>
+            <div class="actions-box" style="display: flex;  margin: 5px; flex-direction: column; justify-content: center; margin-left: 10px;">
+                <div onclick="__adianti_load_page('index.php?class=ProvasView&amp;method=onDelete&amp;static=1&amp;register_state=false&amp;prova_id={$prova_id}')">
+                    <div class="material-icons question-action">
+                        group
+                    </div>
+                </div>
+                <div onclick="__adianti_load_page('index.php?class=ProvasView&amp;method=onDelete&amp;static=1&amp;register_state=false&amp;prova_id={$prova_id}')">
+                    <div class="material-icons question-action">
+                        delete
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 <!--[/main]-->
+

@@ -30,7 +30,6 @@ class QuestaoFormView extends TPage
     {
         try
         {
-        
         $this->makeQuestion($param);
 
         parent::add($this->html);
@@ -51,24 +50,18 @@ class QuestaoFormView extends TPage
         $delete_question_action = new TAction(['QuestaoFormView', 'deleteQuestion'], $param);
         
         TTransaction::open('projeto');
-
         $questao = new Questao($param['id']);
-
         TTransaction::close();
-
-
-        if(is_null($questao->fl_multipla_escolha) AND FALSE)
+        
+        if($questao->is_multipla_escolha)
         {
-            if($questao->fl_multipla_escolha)
-            {
-                // make select question
-                self::makeTextQuestion($param);
-            }
-            else
-            {
-                // make text question
-                self::makeSelectQuestion($param);
-            }
+            $param['type'] = 'select';
+            self::replaceQuestion($param);
+        }
+        elseif($questao->pergunta != NULL)
+        {
+            $param['type'] = 'text';
+            self::replaceQuestion($param);
         }
         else
         {
@@ -85,11 +78,10 @@ class QuestaoFormView extends TPage
             
             $this->html->enableSection('main', $param);
         }
-
     }
     
     public static function makeTextQuestion($param)
-    {
+    {        
         $form = new BootstrapFormBuilder('question_form_' . $param['id']);
         
         $pergunta = new TText('pergunta');
@@ -141,10 +133,25 @@ class QuestaoFormView extends TPage
         
         $btn_onsearch = $form->addAction('Salvar', new TAction(['QuestaoFormView', 'onSave']), NULL);
         $btn_onsearch->addStyleClass('btn-primary');
+
+        if($param['id'])
+        {   
+            TTransaction::open('projeto');
+
+            $questao = new Questao($param['id']);
+            $pergunta->setValue($questao->pergunta);
+            $resposta->setValue($questao->resposta);
+            $tempo_realizacao->setValue($questao->tempo_realizacao);
+            $peso->setValue($questao->peso ?? 5);
+            $value = $questao->is_obrigatoria ? 1 : 0;
+            $is_obrigatoria->setValue($value);
+
+            TTransaction::close();
+        }
         
         return $form;
     }
-    
+
     public static function makeSelectQuestion($param)
     {
         $form = new BootstrapFormBuilder('question_form_' . $param['id']);
@@ -155,7 +162,7 @@ class QuestaoFormView extends TPage
         $descricao      = new TEntry("descricao[]");
         $is_correta     = new TCombo("is_correta[]");
 
-        $is_correta->addItems([1 => 'Correta', 0 => 'Falsa']);
+        $is_correta->addItems([TRUE => 'Correta', FALSE => 'Incorreta']);
         $is_correta->class = 'tfield';
         $is_correta->setValue(0);
 
@@ -171,8 +178,6 @@ class QuestaoFormView extends TPage
         $form->addField($is_correta);
         
         $alternativas->addHeader();
-        $alternativas->addDetail( new stdClass );
-        $alternativas->addCloneAction();
         
         $pergunta->style = 'font-size: 16px';
         
@@ -220,6 +225,34 @@ class QuestaoFormView extends TPage
 
         $btn_onsearch = $form->addAction('Salvar', new TAction(['QuestaoFormView', 'onSave']), NULL);
         $btn_onsearch->addStyleClass('btn-primary');
+
+        if($param['id'])
+        {   
+            TTransaction::open('projeto');
+            
+            $questao = new Questao($param['id']);
+            $questao_alternativas = $questao->getAlternativas();
+            if($questao_alternativas)
+            {
+                foreach ($questao_alternativas as $key => $alternativa) 
+                {
+                    $alternativas->addDetail( $alternativa );
+                }
+            }
+            else
+            {
+                $alternativas->addDetail( new stdClass() );
+            }
+            $alternativas->addCloneAction();
+
+            $pergunta->setValue($questao->pergunta);
+            $tempo_realizacao->setValue($questao->tempo_realizacao);
+            $peso->setValue($questao->peso ?? 5);
+            $value = $questao->is_obrigatoria ? 1 : 0;
+            $is_obrigatoria->setValue($value);
+
+            TTransaction::close();
+        }
 
         return $form;
     }
@@ -282,23 +315,22 @@ class QuestaoFormView extends TPage
     {        
         TTransaction::open('projeto');
         $question = new Questao($param['key']);
-        $question->store();
         TTransaction::close();
 
-        TScript::create("$('.panel-question-body').append('<div id=\"question_{$param['key']}\"></div>');");
+        TScript::create("$('.panel-question-body').append('<div id=\"question_{$question->id}\"></div>');");
 
         // action to load blank question 
         $param_question['register_state'] = 'false'; 
-        $param_question['ref_prova']      = $question->ref_prova;
+        $param_question['ref_prova']      = $question->prova_id;
         $param_question['id']             = $question->id;
+
         $action = new TAction(['QuestaoFormView', 'onLoad'], $param_question);
         $action = $action->serialize();
         
         //execute action to add blank question
-        TScript::create("$(document).ready(function(){ change_page('{$param['key']}', '{$action}'); });");
+        TScript::create("$(document).ready(function(){ change_page('{$question->id}', '{$action}'); });");
         
-        TScript::create("document.getElementById('question_{$param['key']}').scrollIntoView();");
-        // document.getElementById('myDiv').scrollIntoView();    
+        TScript::create("document.getElementById('question_{$question->id}').scrollIntoView();");
     }
 
 
@@ -351,7 +383,6 @@ class QuestaoFormView extends TPage
                         $alternativa->questao_id =  $param['id'];
                         $alternativa->store();
                     }
-
                     $param['is_multipla_escolha'] = TRUE;
                 }
                 else
@@ -360,14 +391,14 @@ class QuestaoFormView extends TPage
                     return;
                 }
             }
-
+            
             $questao = new Questao();
             $questao->id = $param['id'];
             $questao->pergunta = isset($param['pergunta']) ? $param['pergunta'] : 'Questão sem título';
             $questao->resposta = isset($param['resposta']) ? $param['resposta'] : NULL;
             $questao->is_obrigatoria = $param['is_obrigatoria'];
             $questao->peso = $param['peso'];
-            $questao->is_multipla_escolha = isset($param['is_multipla_escolha']) ? $param['is_multipla_escolha'] : FALSE;
+            $questao->is_multipla_escolha = isset($param['is_multipla_escolha']) ? TRUE : FALSE;
             $questao->minutos_realizacao = isset($param['minutos_realizacao']) ? $param['minutos_realizacao'] : 0;
             $questao->store();
 
