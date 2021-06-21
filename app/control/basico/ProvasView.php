@@ -29,19 +29,29 @@ class ProvasView extends TPage
         
         TTransaction::open('projeto');
 
-        $provas      = Prova::getObjects();
-        $provas_html = $this->makeProvas($provas);
+        $login   = TSession::getValue('login');
+        $usuario = Usuario::getUsuarioByLogin($login);
+
+        $provas_professor      = Prova::where('usuario_responsavel', '=', $usuario->id)->load();
+        $provas_professor_html = $this->makeProvasProfessor($provas_professor);
+        
+        $provas_aluno      = Usuario::getProvasByLogin($login);
+        $provas_aluno_html = $this->makeProvasAluno($provas_aluno);
+
+        Usuario::getProvasByLogin($login);
 
         parent::add($this->html);
-        parent::add($provas_html);
+        parent::add($provas_professor_html);
+        parent::add($provas_aluno_html);
 
         TTransaction::close();
     }
     
-    private function makeProvas($provas)
+    private function makeProvasProfessor($provas)
     {
         $row        = new TElement('div');
         $row->style = 'display: flex; flex-wrap: wrap; margin: 0px 40px';
+        $row->id    = 'div_provas_professor';
 
         $template = new THtmlRenderer('app/resources/html/prova_div_new.html');
         $template->enableSection('main');
@@ -67,6 +77,31 @@ class ProvasView extends TPage
         return $row;
     }
 
+    private function makeProvasAluno($provas)
+    {
+        $row        = new TElement('div');
+        $row->style = 'display: flex; flex-wrap: wrap; margin: 0px 40px; display: none';
+        $row->id    = 'div_provas_aluno';
+
+        foreach ($provas as $prova)
+        {
+            $action_delete = new TAction(['ProvasView', 'onDelete'], ['prova_id' => $prova->id, 'static' => 1]);
+
+            $replaces = array('prova_id'      => $prova->id,
+                              'titulo'        => $prova->nome,
+                              'datas'         => $prova->inicio,
+                              'action_delete' => $action_delete->serialize()
+                            );
+
+            $template = new THtmlRenderer('app/resources/html/prova_div.html');
+            $template->enableSection('main', $replaces);
+
+            $row->add($template);
+        }
+
+        return $row;
+    }
+ 
     public function onDelete($param)
     {
         if(isset($param['delete_prova']) && $param['delete_prova'] == 1)
@@ -106,6 +141,15 @@ class ProvasView extends TPage
             $action->setParameter('delete_prova', 1);
             new TQuestion(AdiantiCoreTranslator::translate('Do you really want to delete ?'), $action);   
         }
+    }
+
+    public function onAddGrupos()
+    {
+        $window = TWindow::create('Grupos', 0.5, 0.6);
+      
+
+
+        $window->show();
     }
 
     public function onLoad()

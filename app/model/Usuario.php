@@ -18,7 +18,7 @@ class Usuario extends TRecord
         parent::addAttribute('email');
         parent::addAttribute('senha');
         parent::addAttribute('is_professor');
-            
+        parent::addAttribute('system_user_id');
     }
 
     /**
@@ -169,6 +169,38 @@ class Usuario extends TRecord
         return implode(', ', $values);
     }
 
+    public static function getUsuarioByLogin($login)
+    {
+        $sys_user = SystemUsers::where('login', '=', $login)->first();
+        $usuario  = Usuario::where('system_user_id', '=', $sys_user->id)->first();
+
+        return $usuario;
+    }
+
+    public static function getProvasByLogin($login)
+    {   
+        $usuario = self::getUsuarioByLogin($login);
+        $grupos  = $usuario->getGrupoUsuarios();
+        
+        $grupos_id = array();
+        foreach ($grupos as $key => $grupo) 
+        {
+            $grupos_id[] = $grupo->grupo_id;
+        }
+
+        $grupos_id    = implode($grupos_id, ',');
+        $provas_grupo = GrupoProva::where('grupo_id', 'IN', "NOESC: ({$grupos_id})")->load();
+
+        $provas = array();
+        foreach ($provas_grupo as $prova_grupo) 
+        {   
+            $prova = new Prova($prova_grupo->prova_id);
+
+            $provas[$prova->id] = $prova;
+        }
+
+        return $provas;
+    }
     
 }
 

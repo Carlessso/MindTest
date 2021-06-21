@@ -100,17 +100,24 @@ function change_page(id_question, action)
 
 function change_modalidade()
 {
-    var professor = $('#modalidade_professor');
-    var aluno     = $('#modalidade_aluno');
+    var professor        = $('#modalidade_professor');
+    var provas_professor = $('#div_provas_professor');
+    var aluno            = $('#modalidade_aluno');
+    var provas_aluno     = $('#div_provas_aluno');
+    
 
     if( professor.css('display') == 'none' )
     {
         professor.show();
+        provas_professor.show();
         aluno.hide();
+        provas_aluno.hide();
     }
     else
     {
         professor.hide();
+        provas_professor.hide();
         aluno.show();
+        provas_aluno.show();
     }
 }

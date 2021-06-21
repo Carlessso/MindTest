@@ -154,3 +154,109 @@ Stack trace:
 #5 /var/www/html/MindTest/engine.php(79): TApplication::run()
 #6 {main}
   thrown in /var/www/html/MindTest/app/control/basico/QuestaoFormView.php on line 42
+[20-Jun-2021 21:10:10 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Adianti\Database\TRecord::where(), 2 passed in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 34 and at least 3 expected in /var/www/html/MindTest/lib/adianti/database/TRecord.php:1363
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(34): Adianti\Database\TRecord::where()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/database/TRecord.php on line 1363
+[20-Jun-2021 21:15:24 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'SystemUser' not found in /var/www/html/MindTest/app/model/Usuario.php:175
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(33): Usuario::getUsuarioByLogin()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/app/model/Usuario.php on line 175
+[20-Jun-2021 21:15:48 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Adianti\Database\TRecord::where(), 2 passed in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 35 and at least 3 expected in /var/www/html/MindTest/lib/adianti/database/TRecord.php:1363
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(35): Adianti\Database\TRecord::where()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/database/TRecord.php on line 1363
+[20-Jun-2021 21:16:22 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Adianti\Database\TRecord::where(), 2 passed in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 35 and at least 3 expected in /var/www/html/MindTest/lib/adianti/database/TRecord.php:1363
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(35): Adianti\Database\TRecord::where()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/database/TRecord.php on line 1363
+[20-Jun-2021 21:16:26 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Adianti\Database\TRecord::where(), 2 passed in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 35 and at least 3 expected in /var/www/html/MindTest/lib/adianti/database/TRecord.php:1363
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(35): Adianti\Database\TRecord::where()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/database/TRecord.php on line 1363
+[20-Jun-2021 21:16:38 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Adianti\Database\TRecord::where(), 2 passed in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 35 and at least 3 expected in /var/www/html/MindTest/lib/adianti/database/TRecord.php:1363
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(35): Adianti\Database\TRecord::where()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/database/TRecord.php on line 1363
+[20-Jun-2021 21:32:54 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function setParameter() on null in /var/www/html/MindTest/app/control/basico/ProvasView.php:130
+Stack trace:
+#0 [internal function]: ProvasView->onAddGrupos()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 130
+[20-Jun-2021 21:33:10 America/Sao_Paulo] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Adianti\Widget\Datagrid\TDataGridColumn::setAction() must be an instance of Adianti\Control\TAction, null given, called in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 131 and defined in /var/www/html/MindTest/lib/adianti/widget/datagrid/TDataGridColumn.php:229
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(131): Adianti\Widget\Datagrid\TDataGridColumn->setAction()
+#1 [internal function]: ProvasView->onAddGrupos()
+#2 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#3 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#4 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#5 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/widget/datagrid/TDataGridColumn.php on line 229
+[20-Jun-2021 21:33:34 America/Sao_Paulo] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Adianti\Widget\Datagrid\TDataGridColumn::setAction() must be an instance of Adianti\Control\TAction, null given, called in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 131 and defined in /var/www/html/MindTest/lib/adianti/widget/datagrid/TDataGridColumn.php:229
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(131): Adianti\Widget\Datagrid\TDataGridColumn->setAction()
+#1 [internal function]: ProvasView->onAddGrupos()
+#2 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#3 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#4 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#5 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/widget/datagrid/TDataGridColumn.php on line 229
+[20-Jun-2021 21:37:57 America/Sao_Paulo] PHP Fatal error:  Uncaught Exception: Método Adianti\Control\TAction::__construct deve receber um parâmetro do tipo Callback <br> Verifique se a ação (ProvasView::onSearch) existe in /var/www/html/MindTest/lib/adianti/control/TAction.php:36
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(131): Adianti\Control\TAction->__construct()
+#1 [internal function]: ProvasView->onAddGrupos()
+#2 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(73): call_user_func()
+#3 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#4 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#5 {main}
+  thrown in /var/www/html/MindTest/lib/adianti/control/TAction.php on line 36
+[20-Jun-2021 21:54:22 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method ProvasView::makeProvasAluno() in /var/www/html/MindTest/app/control/basico/ProvasView.php:39
+Stack trace:
+#0 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#1 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#2 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#3 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 39
+[20-Jun-2021 21:54:31 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Usuario::getProvasByLogin(), 0 passed in /var/www/html/MindTest/app/control/basico/ProvasView.php on line 41 and exactly 1 expected in /var/www/html/MindTest/app/model/Usuario.php:180
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(41): Usuario::getProvasByLogin()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/app/model/Usuario.php on line 180
+[20-Jun-2021 22:01:26 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method Adianti\Database\TRepository::dump() in /var/www/html/MindTest/app/model/Usuario.php:192
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/ProvasView.php(41): Usuario::getProvasByLogin()
+#1 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(80): ProvasView->__construct()
+#2 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#3 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#4 {main}
+  thrown in /var/www/html/MindTest/app/model/Usuario.php on line 192
