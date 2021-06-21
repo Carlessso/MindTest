@@ -1,0 +1,57 @@
+<html>
+<div class="panel-top">
+    <div form="form_title" class="panel-definitions">
+        {$form_title}
+    </div>
+    <div class="panel-pessoa material-icons">
+        account_circle
+    </div>            
+</div>
+<div class="panel-top-heigth"> </div>
+<div class="panel-center"> 
+    <a href="index.php?class=ProvasView" class="panel-back-arrow material-icons" style="text-decoration: none;">
+        arrow_back
+    </a>
+    <div class="panel-question-body"></div>
+</div>
+
+<div style="height: 80px;"></div>
+</html>
+
+<script type="text/javascript">
+    var pressedKeys = [];
+
+    $(document.body).keydown(function (evt) {
+        pressedKeys[evt.keyCode] = 'Down';
+        console.log(pressedKeys);
+
+        if ((pressedKeys[65] == 'Down') && (pressedKeys[66] == 'Down')) {
+            storeLogProva("apertou a e b");
+        }
+    });
+
+    $(document.body).keyup(function (evt) {
+        pressedKeys[evt.keyCode] = 'Up';
+    });
+
+    function getDescricaoLog(descricao, callBack)
+    {
+        var url = 'engine.php?class=LogAlunoService&method=gravaLog&static=1&descricao='+descricao;
+
+        fetch(url, { method : "GET", credentials :"include" })
+        .then(response => response.json())
+        .then(response =>
+        {
+          callBack(response);
+      });
+    }
+
+    function storeLogProva(descricao)
+    {
+        getDescricaoLog(descricao, (response) =>
+        {
+            console.log(response);
+        });
+    }
+
+</script>

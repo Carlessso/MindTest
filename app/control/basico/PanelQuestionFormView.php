@@ -77,9 +77,6 @@ class PanelQuestionFormView extends TPage
 
     public static function addQuestion($param)
     {
-        // $question = new THtmlRenderer("app/resources/html/panel_question.html");
-        // $question->enableSection('main', ['id' => uniqid()]);
-        // $question_html = $question->getContents();
         TTransaction::open('projeto');
         $question = new Questao();
         $question->prova_id = 1;

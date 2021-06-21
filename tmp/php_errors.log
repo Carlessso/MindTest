@@ -260,3 +260,86 @@ Stack trace:
 #3 /var/www/html/MindTest/engine.php(79): TApplication::run()
 #4 {main}
   thrown in /var/www/html/MindTest/app/model/Usuario.php on line 192
+[20-Jun-2021 23:17:20 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Adianti\Widget\Form\TField::disableField(), 0 passed in /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php on line 90 and exactly 2 expected in /var/www/html/MindTest/lib/adianti/widget/form/TField.php:459
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(90): Adianti\Widget\Form\TField::disableField()
+#1 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(232): QuestaoAlunoView::makeTextQuestion()
+#2 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(63): QuestaoAlunoView::replaceQuestion()
+#3 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(32): QuestaoAlunoView->makeQuestion()
+#4 [internal function]: QuestaoAlunoView->onLoad()
+#5 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#6 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#7 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adian in /var/www/html/MindTest/lib/adianti/widget/form/TField.php on line 459
+[20-Jun-2021 23:17:20 America/Sao_Paulo] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Adianti\Widget\Form\TField::disableField(), 0 passed in /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php on line 90 and exactly 2 expected in /var/www/html/MindTest/lib/adianti/widget/form/TField.php:459
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(90): Adianti\Widget\Form\TField::disableField()
+#1 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(232): QuestaoAlunoView::makeTextQuestion()
+#2 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(63): QuestaoAlunoView::replaceQuestion()
+#3 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(32): QuestaoAlunoView->makeQuestion()
+#4 [internal function]: QuestaoAlunoView->onLoad()
+#5 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#6 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#7 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adian in /var/www/html/MindTest/lib/adianti/widget/form/TField.php on line 459
+[20-Jun-2021 23:20:33 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php:91
+Stack trace:
+#0 [internal function]: ProvasAlunoView->onEdit()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php on line 91
+[20-Jun-2021 23:20:49 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php:237
+Stack trace:
+#0 [internal function]: ProvasAlunoView->onEdit()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php on line 237
+[20-Jun-2021 23:20:55 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php:237
+Stack trace:
+#0 [internal function]: ProvasAlunoView->onEdit()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php on line 237
+[20-Jun-2021 23:21:59 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php:227
+Stack trace:
+#0 [internal function]: ProvasAlunoView->onEdit()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/ProvasAlunoView.php on line 227
+[20-Jun-2021 23:29:38 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function setValue() on null in /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php:167
+Stack trace:
+#0 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(204): QuestaoAlunoView::makeSelectQuestion()
+#1 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(58): QuestaoAlunoView::replaceQuestion()
+#2 /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php(32): QuestaoAlunoView->makeQuestion()
+#3 [internal function]: QuestaoAlunoView->onLoad()
+#4 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#5 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#6 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#7 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#8 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#9 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php on line 167
+[20-Jun-2021 23:44:24 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Class 'SystemErrorLog' not found in /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php:41
+Stack trace:
+#0 [internal function]: QuestaoAlunoView->onLoad()
+#1 /var/www/html/MindTest/lib/adianti/control/TPage.php(74): call_user_func()
+#2 /var/www/html/MindTest/lib/adianti/control/TPage.php(236): Adianti\Control\TPage->run()
+#3 /var/www/html/MindTest/lib/adianti/core/AdiantiCoreApplication.php(82): Adianti\Control\TPage->show()
+#4 /var/www/html/MindTest/engine.php(27): Adianti\Core\AdiantiCoreApplication::run()
+#5 /var/www/html/MindTest/engine.php(79): TApplication::run()
+#6 {main}
+  thrown in /var/www/html/MindTest/app/control/basico/QuestaoAlunoView.php on line 41

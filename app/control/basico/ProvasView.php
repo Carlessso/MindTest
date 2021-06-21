@@ -61,11 +61,13 @@ class ProvasView extends TPage
         foreach ($provas as $prova)
         {
             $action_delete = new TAction(['ProvasView', 'onDelete'], ['prova_id' => $prova->id, 'static' => 1]);
+            $action_load   = new TAction(['ProvaFormView', 'onEdit'], ['key' => $prova->id, 'id' => $prova->id]);
 
             $replaces = array('prova_id'      => $prova->id,
                               'titulo'        => $prova->nome,
                               'datas'         => $prova->inicio,
-                              'action_delete' => $action_delete->serialize()
+                              'action_delete' => $action_delete->serialize(),
+                              'action_load' => $action_load->serialize()
                             );
 
             $template = new THtmlRenderer('app/resources/html/prova_div.html');
@@ -86,11 +88,15 @@ class ProvasView extends TPage
         foreach ($provas as $prova)
         {
             $action_delete = new TAction(['ProvasView', 'onDelete'], ['prova_id' => $prova->id, 'static' => 1]);
+            $action_load   = new TAction(['ProvasAlunoView', 'onEdit'], ['key' => $prova->id, 'id' => $prova->id]);
+            
+            // index.php?class=ProvaFormView&method=onEdit&key={$prova_id}&id={$prova_id}
 
             $replaces = array('prova_id'      => $prova->id,
                               'titulo'        => $prova->nome,
                               'datas'         => $prova->inicio,
-                              'action_delete' => $action_delete->serialize()
+                              'action_delete' => $action_delete->serialize(),
+                              'action_load'   => $action_load->serialize()
                             );
 
             $template = new THtmlRenderer('app/resources/html/prova_div.html');
