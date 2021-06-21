@@ -125,6 +125,15 @@
     color: #FFFFFF !important;
 }
 
+.prova-form .tcheckgroup_label
+{
+    height: auto !important;
+}
+
+.prova-form .fb-inline-field-container .form-line {
+    height: 100%;
+}
+
 /* .prova-form .ui-sortable td .btn .btn-default .btn-sm{
     background-color: #63ccff;
 } */

@@ -104,7 +104,6 @@ function change_modalidade()
     var provas_professor = $('#div_provas_professor');
     var aluno            = $('#modalidade_aluno');
     var provas_aluno     = $('#div_provas_aluno');
-    
 
     if( professor.css('display') == 'none' )
     {

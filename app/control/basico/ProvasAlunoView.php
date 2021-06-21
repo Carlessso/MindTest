@@ -88,25 +88,9 @@ class ProvasAlunoView extends TPage
         
         TTransaction::close();
     }
-    
-    public function onView($param)
+
+    public function onSaveRespostas()
     {
-        TTransaction::open('projeto');
 
-        $prova                      = new Prova();
-        $prova->nome                = 'Título';
-        $prova->descricao           = 'Descrição';
-        $prova->cor_primaria        = '#63CCFF';
-        $prova->cor_secundaria      = '#15202B';
-        $prova->usuario_responsavel = 1;
-        $prova->store();
-
-        $questao            = new Questao();
-        $questao->prova_id = $prova->id;
-        $questao->store();
-
-        TTransaction::close();
-
-        TApplication::loadPage('ProvaFormView', 'onEdit', ['key' => $prova->id]); 
     }
 }
