@@ -31,8 +31,8 @@ class GrupoUsuarioHeaderList extends TPage
         $this->limit = 20;
 
         $id = new TEntry('id');
-        $usuario_id = new TDBCombo('usuario_id', 'projeto', 'Usuario', 'id', '{id}','id asc'  );
-        $grupo_id = new TDBCombo('grupo_id', 'projeto', 'Grupo', 'id', '{id}','id asc'  );
+        $usuario_id = new TDBCombo('usuario_id', 'projeto', 'Usuario', 'id', '{nome}','id asc'  );
+        $grupo_id = new TDBCombo('grupo_id', 'projeto', 'Grupo', 'id', '{nome}','id asc'  );
 
         $id->exitOnEnter();
 
@@ -59,8 +59,8 @@ class GrupoUsuarioHeaderList extends TPage
         $this->datagrid->setHeight(320);
 
         $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
-        $column_usuario_id = new TDataGridColumn('usuario_id', "Usuario id", 'left');
-        $column_grupo_id = new TDataGridColumn('grupo_id', "Grupo id", 'left');
+        $column_usuario_id = new TDataGridColumn('usuario->nome', "Usuario id", 'left');
+        $column_grupo_id = new TDataGridColumn('grupo->nome', "Grupo id", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');

@@ -120,3 +120,24 @@ function change_modalidade()
         provas_aluno.show();
     }
 }
+
+
+
+function getLocation()
+{
+    if (navigator.geolocation) 
+    {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else 
+    { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+  function showPosition(position) {
+    let latitude    = position.coords.latitude;
+    let longitude   =  position.coords.longitude;
+
+    console.log(latitude, longitude);
+  }

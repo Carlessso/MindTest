@@ -31,8 +31,8 @@ class GrupoProvaHeaderList extends TPage
         $this->limit = 20;
 
         $id = new TEntry('id');
-        $prova_id = new TDBCombo('prova_id', 'projeto', 'Prova', 'id', '{id}','id asc'  );
-        $grupo_id = new TDBCombo('grupo_id', 'projeto', 'Grupo', 'id', '{id}','id asc'  );
+        $prova_id = new TDBCombo('prova_id', 'projeto', 'Prova', 'id', '{nome}','id asc'  );
+        $grupo_id = new TDBCombo('grupo_id', 'projeto', 'Grupo', 'id', '{nome}','id asc'  );
 
         $id->exitOnEnter();
 
@@ -58,9 +58,9 @@ class GrupoProvaHeaderList extends TPage
         $this->datagrid->style = 'width: 100%';
         $this->datagrid->setHeight(320);
 
-        $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
-        $column_prova_id = new TDataGridColumn('prova_id', "Prova id", 'left');
-        $column_grupo_id = new TDataGridColumn('grupo_id', "Grupo id", 'left');
+        $column_id       = new TDataGridColumn('id', "Id", 'center' , '70px');
+        $column_prova_id = new TDataGridColumn('prova->nome', "Prova id", 'left');
+        $column_grupo_id = new TDataGridColumn('grupo->nome', "Grupo id", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');

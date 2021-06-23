@@ -157,3 +157,5 @@ INSERT INTO system_user(id, login, password) VALUES (69, 'Larine', '21232f297a57
 INSERT INTO usuario (id, nome, email, senha, is_professor, system_user_id) VALUES (69, 'Larine', 'lhatter1v@aol.com', 'Long-tailed skua', false, 69);
 INSERT INTO system_user(id, login, password) VALUES (70, 'Kenon', '21232f297a57a5a743894a0e4a801fc3');
 INSERT INTO usuario (id, nome, email, senha, is_professor, system_user_id) VALUES (70, 'Kenon', 'kpaumier1w@friendfeed.com', 'Fox, crab-eating', false, 70);
+
+alter table questao alter COLUMN is_multipla_escolha drop default;

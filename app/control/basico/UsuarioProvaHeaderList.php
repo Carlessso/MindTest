@@ -31,8 +31,8 @@ class UsuarioProvaHeaderList extends TPage
         $this->limit = 20;
 
         $id = new TEntry('id');
-        $usuario_id = new TDBCombo('usuario_id', 'projeto', 'Usuario', 'id', '{id}','id asc'  );
-        $prova_id = new TDBCombo('prova_id', 'projeto', 'Prova', 'id', '{id}','id asc'  );
+        $usuario_id = new TDBCombo('usuario_id', 'projeto', 'Usuario', 'id', '{nome}','id asc'  );
+        $prova_id = new TDBCombo('prova_id', 'projeto', 'Prova', 'id', '{nome}','id asc'  );
         $inicio = new TEntry('inicio');
         $fim = new TEntry('fim');
 
@@ -67,8 +67,8 @@ class UsuarioProvaHeaderList extends TPage
         $this->datagrid->setHeight(320);
 
         $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
-        $column_usuario_id = new TDataGridColumn('usuario_id', "Usuario id", 'left');
-        $column_prova_id = new TDataGridColumn('prova_id', "Prova id", 'left');
+        $column_usuario_id = new TDataGridColumn('usuario->nome', "Usuario id", 'left');
+        $column_prova_id = new TDataGridColumn('prova->nome', "Prova id", 'left');
         $column_inicio = new TDataGridColumn('inicio', "Inicio", 'left');
         $column_fim = new TDataGridColumn('fim', "Fim", 'left');
 

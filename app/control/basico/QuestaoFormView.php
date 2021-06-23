@@ -1,3 +1,4 @@
+
 <?php
 /**
  * LoginForm
@@ -52,7 +53,6 @@ class QuestaoFormView extends TPage
         TTransaction::open('projeto');
         $questao = new Questao($param['id']);
         TTransaction::close();
-        
         if($questao->is_multipla_escolha)
         {
             $param['type'] = 'select';
@@ -126,7 +126,7 @@ class QuestaoFormView extends TPage
         $row = $form->addFields(
             [NULL, $id],
             [new TLabel('Peso', NULL, NULL, NULL, '100%'), $peso],
-            [new TLabel('Obrigatória?', NULL, NULL, NULL, '100%'), $is_obrigatoria],
+            [new TLabel('Obrigatória?', NULL, NULL, NULL, '100%'), $is_obrigatoria]
         );
         $row->layout = ['col-sm-4','col-sm-4','col-sm-4'];
         $row->class  = 'prova-form';
@@ -218,7 +218,7 @@ class QuestaoFormView extends TPage
         $row = $form->addFields(
             [NULL, $id],
             [new TLabel('Peso', NULL, NULL, NULL, '100%'), $peso],
-            [new TLabel('Obrigatória?', NULL, NULL, NULL, '100%'), $is_obrigatoria],
+            [new TLabel('Obrigatória?', NULL, NULL, NULL, '100%'), $is_obrigatoria]
         );
         $row->layout = ['col-sm-4','col-sm-4','col-sm-4'];
         $row->class  = 'prova-form';

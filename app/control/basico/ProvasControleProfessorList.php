@@ -1,6 +1,6 @@
 <?php
 
-class QuestaoHeaderList extends TPage
+class ProvasControleProfessorList extends TPage
 {
     private $form; // form
     private $datagrid; // listing
@@ -8,9 +8,9 @@ class QuestaoHeaderList extends TPage
     private $loaded;
     private $filter_criteria;
     private static $database = 'projeto';
-    private static $activeRecord = 'Questao';
+    private static $activeRecord = 'UsuarioProva';
     private static $primaryKey = 'id';
-    private static $formName = 'formHeader_Questao';
+    private static $formName = 'formHeader_UsuarioProva';
     private $showMethods = ['onReload', 'onSearch'];
     private $limit = 20;
 
@@ -31,36 +31,27 @@ class QuestaoHeaderList extends TPage
         $this->limit = 20;
 
         $id = new TEntry('id');
-        $pergunta = new TEntry('pergunta');
-        $is_multipla_escolha = new TEntry('is_multipla_escolha');
+        $usuario_id = new TDBCombo('usuario_id', 'projeto', 'Usuario', 'id', '{nome}','id asc'  );
         $prova_id = new TDBCombo('prova_id', 'projeto', 'Prova', 'id', '{nome}','id asc'  );
-        // $minutos_realizacao = new TEntry('minutos_realizacao');
-        $peso = new TEntry('peso');
-        $is_obrigatoria = new TEntry('is_obrigatoria');
+        $inicio = new TEntry('inicio');
+        $fim = new TEntry('fim');
 
         $id->exitOnEnter();
-        $pergunta->exitOnEnter();
-        $is_multipla_escolha->exitOnEnter();
-        // $minutos_realizacao->exitOnEnter();
-        $peso->exitOnEnter();
-        $is_obrigatoria->exitOnEnter();
+        $inicio->exitOnEnter();
+        $fim->exitOnEnter();
 
         $id->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
-        $pergunta->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
-        $is_multipla_escolha->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
-        // $minutos_realizacao->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
-        $peso->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
-        $is_obrigatoria->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
+        $inicio->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
+        $fim->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
 
+        $usuario_id->setChangeAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
         $prova_id->setChangeAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
 
         $id->setSize('100%');
-        $peso->setSize('100%');
-        $pergunta->setSize('100%');
+        $fim->setSize('100%');
+        $inicio->setSize('100%');
         $prova_id->setSize('100%');
-        $is_obrigatoria->setSize('100%');
-        // $minutos_realizacao->setSize('100%');
-        $is_multipla_escolha->setSize('100%');
+        $usuario_id->setSize('100%');
 
         // creates a Datagrid
         $this->datagrid = new TDataGrid;
@@ -76,42 +67,35 @@ class QuestaoHeaderList extends TPage
         $this->datagrid->setHeight(320);
 
         $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
-        $column_pergunta = new TDataGridColumn('pergunta', "Pergunta", 'left');
-        $column_is_multipla_escolha = new TDataGridColumn('is_multipla_escolha', "Multipla escolha?", 'left');
+        $column_usuario_id = new TDataGridColumn('usuario->nome', "Usuario", 'left');
         $column_prova_id = new TDataGridColumn('prova->nome', "Prova", 'left');
-        // $column_minutos_realizacao = new TDataGridColumn('minutos_realizacao', "Minutos realizacao", 'left');
-        $column_peso = new TDataGridColumn('peso', "Peso", 'left');
-        $column_is_obrigatoria = new TDataGridColumn('is_obrigatoria', "Obrigatoria?", 'left');
-
-        $column_is_obrigatoria->setTransformer([$this, 'transformSimENao']);
-        $column_is_multipla_escolha->setTransformer([$this, 'transformSimENao']);
+        $column_inicio = new TDataGridColumn('inicio', "Inicio", 'left');
+        $column_fim = new TDataGridColumn('fim', "Fim", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');
         $column_id->setAction($order_id);
 
         $this->datagrid->addColumn($column_id);
-        $this->datagrid->addColumn($column_pergunta);
-        $this->datagrid->addColumn($column_is_multipla_escolha);
+        $this->datagrid->addColumn($column_usuario_id);
         $this->datagrid->addColumn($column_prova_id);
-        // $this->datagrid->addColumn($column_minutos_realizacao);
-        $this->datagrid->addColumn($column_peso);
-        $this->datagrid->addColumn($column_is_obrigatoria);
+        $this->datagrid->addColumn($column_inicio);
+        $this->datagrid->addColumn($column_fim);
 
-        $action_onEdit = new TDataGridAction(array('QuestaoForm', 'onEdit'));
+        $action_onEdit = new TDataGridAction(array('ProvasControleProfessorList', 'onOpenProva'));
         $action_onEdit->setUseButton(false);
         $action_onEdit->setButtonClass('btn btn-default btn-sm');
-        $action_onEdit->setLabel("Editar");
+        $action_onEdit->setLabel("Prova");
         $action_onEdit->setImage('far:edit #478fca');
         $action_onEdit->setField(self::$primaryKey);
 
         $this->datagrid->addAction($action_onEdit);
 
-        $action_onDelete = new TDataGridAction(array('QuestaoHeaderList', 'onDelete'));
+        $action_onDelete = new TDataGridAction(array('UsuarioProvaHeaderList', 'onDelete'));
         $action_onDelete->setUseButton(false);
         $action_onDelete->setButtonClass('btn btn-default btn-sm');
-        $action_onDelete->setLabel("Excluir");
-        $action_onDelete->setImage('fas:trash-alt #dd5a43');
+        $action_onDelete->setLabel("Logs");
+        $action_onDelete->setImage('fas:map green');
         $action_onDelete->setField(self::$primaryKey);
 
         $this->datagrid->addAction($action_onDelete);
@@ -125,20 +109,16 @@ class QuestaoHeaderList extends TPage
         $tr->add(TElement::tag('td', ''));
         $tr->add(TElement::tag('td', ''));
         $tr->add(TElement::tag('td', $id));
-        $tr->add(TElement::tag('td', $pergunta));
-        $tr->add(TElement::tag('td', $is_multipla_escolha));
+        $tr->add(TElement::tag('td', $usuario_id));
         $tr->add(TElement::tag('td', $prova_id));
-        // $tr->add(TElement::tag('td', $minutos_realizacao));
-        $tr->add(TElement::tag('td', $peso));
-        $tr->add(TElement::tag('td', $is_obrigatoria));
+        $tr->add(TElement::tag('td', $inicio));
+        $tr->add(TElement::tag('td', $fim));
 
         $this->datagrid_form->addField($id);
-        $this->datagrid_form->addField($pergunta);
-        $this->datagrid_form->addField($is_multipla_escolha);
+        $this->datagrid_form->addField($usuario_id);
         $this->datagrid_form->addField($prova_id);
-        // $this->datagrid_form->addField($minutos_realizacao);
-        $this->datagrid_form->addField($peso);
-        $this->datagrid_form->addField($is_obrigatoria);
+        $this->datagrid_form->addField($inicio);
+        $this->datagrid_form->addField($fim);
 
         $this->datagrid_form->setData( TSession::getValue(__CLASS__.'_filter_data') );
 
@@ -148,7 +128,7 @@ class QuestaoHeaderList extends TPage
         $this->pageNavigation->setAction(new TAction(array($this, 'onReload')));
         $this->pageNavigation->setWidth($this->datagrid->getWidth());
 
-        $panel = new TPanelGroup("Listagem de questões");
+        $panel = new TPanelGroup("Listagem de usuario provas");
         $this->datagridPanel = $panel;
 
         $panel->addFooter($this->pageNavigation);
@@ -166,23 +146,14 @@ class QuestaoHeaderList extends TPage
         $headerActions->add($head_right_actions);
 
         $this->datagrid_form->add($this->datagrid);
-        $panel->add($headerActions);
         $panel->add($this->datagrid_form);
-
-        $button_cadastrar = new TButton('button_button_cadastrar');
-        $button_cadastrar->setAction(new TAction(['QuestaoForm', 'onShow']), "Cadastrar");
-        $button_cadastrar->addStyleClass('');
-        $button_cadastrar->setImage('fas:plus #69aa46');
-        $this->datagrid_form->addField($button_cadastrar);
 
         $dropdown_button_exportar = new TDropDown("Exportar", 'fas:file-export #2d3436');
         $dropdown_button_exportar->setPullSide('right');
         $dropdown_button_exportar->setButtonClass('btn btn-default waves-effect dropdown-toggle');
-        $dropdown_button_exportar->addPostAction( "CSV", new TAction(['QuestaoHeaderList', 'onExportCsv']), 'datagrid_'.self::$formName, 'fas:table #00b894' );
-        $dropdown_button_exportar->addPostAction( "PDF", new TAction(['QuestaoHeaderList', 'onExportPdf']), 'datagrid_'.self::$formName, 'far:file-pdf #e74c3c' );
-        $dropdown_button_exportar->addPostAction( "XML", new TAction(['QuestaoHeaderList', 'onExportXml']), 'datagrid_'.self::$formName, 'far:file-code #95a5a6' );
-
-        $head_left_actions->add($button_cadastrar);
+        $dropdown_button_exportar->addPostAction( "CSV", new TAction(['UsuarioProvaHeaderList', 'onExportCsv']), 'datagrid_'.self::$formName, 'fas:table #00b894' );
+        $dropdown_button_exportar->addPostAction( "PDF", new TAction(['UsuarioProvaHeaderList', 'onExportPdf']), 'datagrid_'.self::$formName, 'far:file-pdf #e74c3c' );
+        $dropdown_button_exportar->addPostAction( "XML", new TAction(['UsuarioProvaHeaderList', 'onExportXml']), 'datagrid_'.self::$formName, 'far:file-code #95a5a6' );
 
         $head_right_actions->add($dropdown_button_exportar);
 
@@ -191,13 +162,20 @@ class QuestaoHeaderList extends TPage
         $container->style = 'width: 100%';
         if(empty($param['target_container']))
         {
-            $container->add(TBreadCrumb::create(["Básico","Questões"]));
+            $container->add(TBreadCrumb::create(["Básico","Usuario provas"]));
         }
 
         $container->add($panel);
 
         parent::add($container);
 
+    }
+
+    public function onOpenProva($param = null)
+    {
+        // $action = new TAction(['ProvaControleProfessorView', 'onEdit'], ['key' => $param['key'], 'id' => $param['key']]);
+        
+        TApplication::loadPage('ProvaControleProfessorView', 'onEdit', $param);   
     }
 
     public function onDelete($param = null) 
@@ -212,7 +190,7 @@ class QuestaoHeaderList extends TPage
                 TTransaction::open(self::$database);
 
                 // instantiates object
-                $object = new Questao($key, FALSE); 
+                $object = new UsuarioProva($key, FALSE); 
 
                 // deletes the object from the database
                 $object->delete();
@@ -427,16 +405,10 @@ class QuestaoHeaderList extends TPage
             $filters[] = new TFilter('id', '=', $data->id);// create the filter 
         }
 
-        if (isset($data->pergunta) AND ( (is_scalar($data->pergunta) AND $data->pergunta !== '') OR (is_array($data->pergunta) AND (!empty($data->pergunta)) )) )
+        if (isset($data->usuario_id) AND ( (is_scalar($data->usuario_id) AND $data->usuario_id !== '') OR (is_array($data->usuario_id) AND (!empty($data->usuario_id)) )) )
         {
 
-            $filters[] = new TFilter('pergunta', 'like', "%{$data->pergunta}%");// create the filter 
-        }
-
-        if (isset($data->is_multipla_escolha) AND ( (is_scalar($data->is_multipla_escolha) AND $data->is_multipla_escolha !== '') OR (is_array($data->is_multipla_escolha) AND (!empty($data->is_multipla_escolha)) )) )
-        {
-
-            $filters[] = new TFilter('is_multipla_escolha', '=', $data->is_multipla_escolha);// create the filter 
+            $filters[] = new TFilter('usuario_id', '=', $data->usuario_id);// create the filter 
         }
 
         if (isset($data->prova_id) AND ( (is_scalar($data->prova_id) AND $data->prova_id !== '') OR (is_array($data->prova_id) AND (!empty($data->prova_id)) )) )
@@ -445,22 +417,16 @@ class QuestaoHeaderList extends TPage
             $filters[] = new TFilter('prova_id', '=', $data->prova_id);// create the filter 
         }
 
-        if (isset($data->minutos_realizacao) AND ( (is_scalar($data->minutos_realizacao) AND $data->minutos_realizacao !== '') OR (is_array($data->minutos_realizacao) AND (!empty($data->minutos_realizacao)) )) )
+        if (isset($data->inicio) AND ( (is_scalar($data->inicio) AND $data->inicio !== '') OR (is_array($data->inicio) AND (!empty($data->inicio)) )) )
         {
 
-            $filters[] = new TFilter('minutos_realizacao', '=', $data->minutos_realizacao);// create the filter 
+            $filters[] = new TFilter('inicio', '=', $data->inicio);// create the filter 
         }
 
-        if (isset($data->peso) AND ( (is_scalar($data->peso) AND $data->peso !== '') OR (is_array($data->peso) AND (!empty($data->peso)) )) )
+        if (isset($data->fim) AND ( (is_scalar($data->fim) AND $data->fim !== '') OR (is_array($data->fim) AND (!empty($data->fim)) )) )
         {
 
-            $filters[] = new TFilter('peso', '=', $data->peso);// create the filter 
-        }
-
-        if (isset($data->is_obrigatoria) AND ( (is_scalar($data->is_obrigatoria) AND $data->is_obrigatoria !== '') OR (is_array($data->is_obrigatoria) AND (!empty($data->is_obrigatoria)) )) )
-        {
-
-            $filters[] = new TFilter('is_obrigatoria', '=', $data->is_obrigatoria);// create the filter 
+            $filters[] = new TFilter('fim', '=', $data->fim);// create the filter 
         }
 
         // fill the form with data again
@@ -492,7 +458,7 @@ class QuestaoHeaderList extends TPage
             // open a transaction with database 'projeto'
             TTransaction::open(self::$database);
 
-            // creates a repository for Questao
+            // creates a repository for UsuarioProva
             $repository = new TRepository(self::$activeRecord);
 
             $criteria = clone $this->filter_criteria;
@@ -559,16 +525,6 @@ class QuestaoHeaderList extends TPage
     public function onShow($param = null)
     {
 
-    }
-
-    public function transformSimENao($param)
-    {
-        if($param)
-        {
-            return 'Sim';
-        }
-
-        return 'Não';
     }
 
     /**

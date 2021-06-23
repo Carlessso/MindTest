@@ -81,70 +81,76 @@ class QuestaoAlunoView extends TPage
     
     public static function makeTextQuestion($param)
     {        
-        $form = new BootstrapFormBuilder('question_form_' . $param['id']);
+        $div = new TElement('div');
+        
+        $div->name = 'question_form_' . $param['id'];
+        $div->style = 'padding:20px;';
         
         $id       = new THidden('id');
-        $pergunta = new TText('pergunta');
-        $resposta = new TText('resposta');
-        
-        $pergunta->style = 'font-size: 16px';
-        $pergunta->setEditable(FALSE);
+        $pergunta = new TElement('div');
+        $resposta = new TText('resposta_'.$param['id']);
 
-        $pergunta->setSize('100%', '11px');
-        $resposta->setSize('100%');
+        $pergunta->layout = ['col-sm-12'];
+        $pergunta->class = "question-div-text";
+        $pergunta->style = 'font-size: 16px;color: white; margin-bottom: 30px;opacity: 0.8;';
         
+        $div->add($pergunta);
+
+        $resposta->setSize('100%');
+    
+        $resposta->style = 'background-color: #15202B;color: #FFFFFF !important;border: 0;';
         $resposta->placeholder = 'Digite a resposta aqui';
         
-        $row = $form->addFields([$id]);
-        $row = $form->addFields([NULL, $pergunta]);
-        $row->layout = ['col-sm-12'];
-        $row->class = "question-div-text";
-        $row = $form->addFields([NULL, $resposta]);
-        $row->layout = ['col-sm-12'];
-        $row->class = "question-div-text";
-        
+        if (!empty($param['value'])) 
+        {
+            $resposta->setValue($param['value']);
+        }
+
         $id->setValue($param['id']);
+
+        $div->add($resposta);
 
         TTransaction::open('projeto');
         $questao = new Questao($param['id']);
-        $pergunta->setValue($questao->pergunta);
+        $pergunta->add($questao->pergunta);
         TTransaction::close();
         
-        return $form;
+        return $div;
     }
 
     public static function makeSelectQuestion($param)
     {
-        $form = new BootstrapFormBuilder('question_form_' . $param['id']);
+        $div = new TElement('div');
         
-        $id             = new THidden('id');
-        $pergunta = new TText('pergunta');
+        $div->name = 'question_form_' . $param['id'];
+        $div->style = 'padding:20px;';
+
+        $id             = new THidden('id[]');
+        $pergunta       = new TElement('div');
         
         $id_alternativa = new THidden("id_alternativa[]");
         $descricao      = new TEntry("descricao[]");
-        $is_correta     = new TCombo("is_correta[]");
         
-        $is_correta->addItems([TRUE => 'Correta', FALSE => 'Incorreta']);
-        $is_correta->class = 'tfield';
-        $is_correta->setValue(0);
-        
-        $alternativas = new TCheckGroup('alternativas');
+        $alternativas = new TCheckGroup('alternativas_'.$param['id']);
         
         $pergunta->placeholder  = 'Digite a questão aqui';
-        $pergunta->style = 'font-size: 16px';
-        $pergunta->setEditable(FALSE);
-        $pergunta->setSize('100%', '11px');
+        $pergunta->style = 'font-size: 16px;color: white; margin-bottom: 30px;opacity: 0.8;';
         
         $descricao->setSize('100%');
         $descricao->placeholder = 'Alternativa';
         
-        $row = $form->addFields([$id]);
-        $row = $form->addFields([NULL, $pergunta]);
-        $row->layout = ['col-sm-12'];
-        $row->class = "question-div-text";
-        $row = $form->addFields([NULL, $alternativas]);
-        $row->layout = ['col-sm-12'];
-        $row->class = "prova-form";
+        $row = $div->add([$id]);
+        $pergunta->layout = ['col-sm-12'];
+
+        $pergunta->class = "question-div-text";
+        
+        $div->add($pergunta);
+
+        $alternativas->layout = ['col-sm-12'];
+
+        $div->add($alternativas);
+
+        $div->class = "prova-form";
         
         $id->setValue($param['id']);
 
@@ -162,11 +168,16 @@ class QuestaoAlunoView extends TPage
         }
 
         $alternativas->addItems($questao_alternativas_ids);
-        $pergunta->setValue($questao->pergunta);
+        $pergunta->add($questao->pergunta);
+
+        if (!empty($param['value'])) 
+        {
+            $alternativas->setValue(json_decode($param['value']));
+        }
 
         TTransaction::close();
 
-        return $form;
+        return $div;
     }
     
     public static function replaceQuestion($param)
@@ -229,6 +240,21 @@ class QuestaoAlunoView extends TPage
         $param_question['register_state'] = 'false'; 
         $param_question['ref_prova']      = $question->prova_id;
         $param_question['id']             = $question->id;
+
+        if (!empty($param['value'])) 
+        {
+            $param_question['value'] = $param['value'];
+        }
+
+        if (!empty($param['value']) and is_array($param['value'])) 
+        {
+            $array_alternativas = [];
+            foreach($param['value'] as $alternativa_marcada)
+            {
+                $array_alternativas[] = $alternativa_marcada->alternativa_id;
+                $param_question['value'] = json_encode($array_alternativas);
+            }
+        }
 
         $action = new TAction(['QuestaoAlunoView', 'onLoad'], $param_question);
         $action = $action->serialize();

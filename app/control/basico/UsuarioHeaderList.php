@@ -70,8 +70,8 @@ class UsuarioHeaderList extends TPage
         $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
         $column_nome = new TDataGridColumn('nome', "Nome", 'left');
         $column_email = new TDataGridColumn('email', "Email", 'left');
-        $column_senha = new TDataGridColumn('senha', "Senha", 'left');
-        $column_is_professor = new TDataGridColumn('is_professor', "Is professor", 'left');
+        // $column_senha = new TDataGridColumn('senha', "Senha", 'left');
+        // $column_is_professor = new TDataGridColumn('is_professor', "Is professor", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');
@@ -80,8 +80,8 @@ class UsuarioHeaderList extends TPage
         $this->datagrid->addColumn($column_id);
         $this->datagrid->addColumn($column_nome);
         $this->datagrid->addColumn($column_email);
-        $this->datagrid->addColumn($column_senha);
-        $this->datagrid->addColumn($column_is_professor);
+        // $this->datagrid->addColumn($column_senha);
+        // $this->datagrid->addColumn($column_is_professor);
 
         $action_onEdit = new TDataGridAction(array('UsuarioForm', 'onEdit'));
         $action_onEdit->setUseButton(false);
@@ -112,14 +112,14 @@ class UsuarioHeaderList extends TPage
         $tr->add(TElement::tag('td', $id));
         $tr->add(TElement::tag('td', $nome));
         $tr->add(TElement::tag('td', $email));
-        $tr->add(TElement::tag('td', $senha));
-        $tr->add(TElement::tag('td', $is_professor));
+        // $tr->add(TElement::tag('td', $senha));
+        // $tr->add(TElement::tag('td', $is_professor));
 
         $this->datagrid_form->addField($id);
         $this->datagrid_form->addField($nome);
         $this->datagrid_form->addField($email);
-        $this->datagrid_form->addField($senha);
-        $this->datagrid_form->addField($is_professor);
+        // $this->datagrid_form->addField($senha);
+        // $this->datagrid_form->addField($is_professor);
 
         $this->datagrid_form->setData( TSession::getValue(__CLASS__.'_filter_data') );
 

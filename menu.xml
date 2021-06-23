@@ -7,6 +7,10 @@
         <icon>far:circle fa-fw </icon>
         <action>ProvaFormView#method=onView</action>
       </menuitem>
+      <menuitem label="Controle provas professor">
+        <icon>far:circle fa-fw </icon>
+        <action>ProvasControleProfessorList#method=onReload</action>
+      </menuitem>
     </menu>
   </menuitem>
   <menuitem label="Cadastros">

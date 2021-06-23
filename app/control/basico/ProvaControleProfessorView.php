@@ -9,7 +9,7 @@
  * @copyright  Copyright (c) 2006 Adianti Solutions Ltd. (http://www.adianti.com.br)
  * @license    http://www.adianti.com.br/framework-license
  */
-class ProvasAlunoView extends TPage
+class ProvaControleProfessorView extends TPage
 {
     protected $form; // form
     protected $form_title; // form_title
@@ -24,7 +24,7 @@ class ProvasAlunoView extends TPage
     {
         parent::__construct();
 
-        $this->html = new THtmlRenderer('app/resources/html/prova_aluno.html');
+        $this->html = new THtmlRenderer('app/resources/html/prova_professor.html');
         
         $this->form_title = $this->makeFormularioTitle($param);
         
@@ -62,20 +62,12 @@ class ProvasAlunoView extends TPage
     public function onEdit($param)   
     {
         TTransaction::open('projeto');
-        
-        $prova = new Prova($param['key']);
+
+        $usuario_prova = new UsuarioProva($param['key']);
+
+        $prova = $usuario_prova->prova;
 
         TSession::setValue('prova_id', $prova->id);
-
-        $criteria = new TCriteria;
-
-        $criteria->add(new TFilter('prova_id',   '=', $param['key']));
-        $criteria->add(new TFilter('usuario_id', '=', TSession::getValue('userid')));
-
-        if (!empty(UsuarioProva::getObjects($criteria))) 
-        {
-            new TMessage('error', 'Você já realizou essa prova!', new TAction(['ProvasView', 'onLoad']));
-        }
 
         if(empty($prova))
         {
@@ -91,13 +83,25 @@ class ProvasAlunoView extends TPage
 
         $this->form_title->setData($object);
 
-        $questoes = Questao::where('prova_id', '=', $param['key'])->orderBy('id', 'asc')->load();
+        $questoes = Questao::where('prova_id', '=', $prova->id)->orderBy('id', 'asc')->load();
         
         foreach ($questoes as $questao) 
-        {
-            QuestaoAlunoView::editQuestion(['key' => $questao->id]);
+        {        
+            $questoes_usuario = QuestaoUsuarioProva::where('usuario_prova_id', '=', $usuario_prova->id)->where('questao_id', '=', $questao->id)->load();
+
+            foreach($questoes_usuario as $questao_usuario)
+            {
+                if (!empty($questao_usuario->resposta_usuario)) //buscar questao responder
+                {
+                    QuestaoAlunoView::editQuestion(['key' => $questao->id, 'value' => $questao_usuario->resposta_usuario]);
+                }
+                else//questao marcar
+                {
+                    QuestaoAlunoView::editQuestion(['key' => $questao->id, 'value' => AlternativaRespostaQuestao::where('questao_usuario_prova_id', '=', $questao_usuario->id)->load()]);
+                }
+            }
         }
-        
+
         TTransaction::close();
     }
 

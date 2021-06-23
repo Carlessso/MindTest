@@ -46,7 +46,7 @@ class AdiantiCoreApplication
         {
             if (empty($ini['general']['request_log_types']) || strpos($ini['general']['request_log_types'], 'web') !== false)
             {
-                self::$request_id = $service::register( 'web');
+                // self::$request_id = $service::register( 'web');
             }
         }
         

@@ -31,7 +31,7 @@ class AlternativaHeaderList extends TPage
         $this->limit = 20;
 
         $id = new TEntry('id');
-        $questao_id = new TDBCombo('questao_id', 'projeto', 'Questao', 'id', '{id}','id asc'  );
+        $questao_id = new TDBCombo('questao_id', 'projeto', 'Questao', 'id', '{pergunta}','id asc'  );
         $descricao = new TEntry('descricao');
         $is_correta = new TEntry('is_correta');
 
@@ -64,9 +64,11 @@ class AlternativaHeaderList extends TPage
         $this->datagrid->setHeight(320);
 
         $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
-        $column_questao_id = new TDataGridColumn('questao_id', "Questao id", 'left');
+        $column_questao_id = new TDataGridColumn('questao->pergunta', "Questao id", 'left');
         $column_descricao = new TDataGridColumn('descricao', "Descricao", 'left');
-        $column_is_correta = new TDataGridColumn('is_correta', "Is correta", 'left');
+        $column_is_correta = new TDataGridColumn('is_correta', "Correta?", 'left');
+
+        $column_is_correta->setTransformer([$this, 'transformSimENao']);
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');
@@ -515,6 +517,17 @@ class AlternativaHeaderList extends TPage
     {
 
     }
+
+    public function transformSimENao($param)
+    {
+        if($param)
+        {
+            return 'Sim';
+        }
+
+        return 'Não';
+    }
+
 
     /**
      * method show()

@@ -31,7 +31,7 @@ class AlternativaRespostaQuestaoHeaderList extends TPage
         $this->limit = 20;
 
         $id = new TEntry('id');
-        $alternativa_id = new TDBCombo('alternativa_id', 'projeto', 'Alternativa', 'id', '{id}','id asc'  );
+        $alternativa_id = new TDBCombo('alternativa_id', 'projeto', 'Alternativa', 'id', '{descricao}','id asc'  );
         $questao_usuario_prova_id = new TDBCombo('questao_usuario_prova_id', 'projeto', 'QuestaoUsuarioProva', 'id', '{id}','id asc'  );
 
         $id->exitOnEnter();
@@ -494,6 +494,16 @@ class AlternativaRespostaQuestaoHeaderList extends TPage
             // undo all pending operations
             TTransaction::rollback();
         }
+    }
+    
+    public function transformSimENao($param)
+    {
+        if($param)
+        {
+            return 'Sim';
+        }
+
+        return 'Não';
     }
 
     public function onShow($param = null)

@@ -31,7 +31,7 @@ class RespostaHeaderList extends TPage
         $this->limit = 20;
 
         $id = new TEntry('id');
-        $questao_id = new TDBCombo('questao_id', 'projeto', 'Questao', 'id', '{id}','id asc'  );
+        $questao_id = new TDBCombo('questao_id', 'projeto', 'Questao', 'id', '{pergunta}','id asc'  );
         $resposta = new TEntry('resposta');
 
         $id->exitOnEnter();
@@ -60,7 +60,7 @@ class RespostaHeaderList extends TPage
         $this->datagrid->setHeight(320);
 
         $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
-        $column_questao_id = new TDataGridColumn('questao_id', "Questao id", 'left');
+        $column_questao_id = new TDataGridColumn('questao->pergunta', "Questao id", 'left');
         $column_resposta = new TDataGridColumn('resposta', "Resposta", 'left');
 
         $order_id = new TAction(array($this, 'onReload'));

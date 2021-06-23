@@ -32,32 +32,29 @@ class ProvaHeaderList extends TPage
 
         $id = new TEntry('id');
         $nome = new TEntry('nome');
-        $sucinto = new TEntry('sucinto');
         $minutos_realizacao = new TEntry('minutos_realizacao');
         $cor_primaria = new TEntry('cor_primaria');
         $cor_secundaria = new TEntry('cor_secundaria');
         $usuario_responsavel = new TDBCombo('usuario_responsavel', 'projeto', 'Usuario', 'id', '{id}','id asc'  );
-        $is_publica = new TEntry('is_publica');
+        // $is_publica = new TEntry('is_publica');
         $inicio = new TEntry('inicio');
         $fim = new TEntry('fim');
 
         $id->exitOnEnter();
         $nome->exitOnEnter();
-        $sucinto->exitOnEnter();
         $minutos_realizacao->exitOnEnter();
         $cor_primaria->exitOnEnter();
         $cor_secundaria->exitOnEnter();
-        $is_publica->exitOnEnter();
+        // $is_publica->exitOnEnter();
         $inicio->exitOnEnter();
         $fim->exitOnEnter();
 
         $id->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
         $nome->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
-        $sucinto->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
         $minutos_realizacao->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
         $cor_primaria->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
         $cor_secundaria->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
-        $is_publica->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
+        // $is_publica->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
         $inicio->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
         $fim->setExitAction(new TAction([$this, 'onSearch'], ['static'=>'1']));
 
@@ -67,8 +64,7 @@ class ProvaHeaderList extends TPage
         $fim->setSize('100%');
         $nome->setSize('100%');
         $inicio->setSize('100%');
-        $sucinto->setSize('100%');
-        $is_publica->setSize('100%');
+        // $is_publica->setSize('100%');
         $cor_primaria->setSize('100%');
         $cor_secundaria->setSize('100%');
         $minutos_realizacao->setSize('100%');
@@ -89,12 +85,11 @@ class ProvaHeaderList extends TPage
 
         $column_id = new TDataGridColumn('id', "Id", 'center' , '70px');
         $column_nome = new TDataGridColumn('nome', "Nome", 'left');
-        $column_sucinto = new TDataGridColumn('sucinto', "Sucinto", 'left');
         $column_minutos_realizacao = new TDataGridColumn('minutos_realizacao', "Minutos realizacao", 'left');
         $column_cor_primaria = new TDataGridColumn('cor_primaria', "Cor primaria", 'left');
         $column_cor_secundaria = new TDataGridColumn('cor_secundaria', "Cor secundaria", 'left');
         $column_usuario_responsavel = new TDataGridColumn('usuario_responsavel', "Usuario responsavel", 'left');
-        $column_is_publica = new TDataGridColumn('is_publica', "Is publica", 'left');
+        // $column_is_publica = new TDataGridColumn('is_publica', "Is publica", 'left');
         $column_inicio = new TDataGridColumn('inicio', "Inicio", 'left');
         $column_fim = new TDataGridColumn('fim', "Fim", 'left');
 
@@ -104,12 +99,11 @@ class ProvaHeaderList extends TPage
 
         $this->datagrid->addColumn($column_id);
         $this->datagrid->addColumn($column_nome);
-        $this->datagrid->addColumn($column_sucinto);
         $this->datagrid->addColumn($column_minutos_realizacao);
         $this->datagrid->addColumn($column_cor_primaria);
         $this->datagrid->addColumn($column_cor_secundaria);
         $this->datagrid->addColumn($column_usuario_responsavel);
-        $this->datagrid->addColumn($column_is_publica);
+        // $this->datagrid->addColumn($column_is_publica);
         $this->datagrid->addColumn($column_inicio);
         $this->datagrid->addColumn($column_fim);
 
@@ -150,23 +144,21 @@ class ProvaHeaderList extends TPage
         $tr->add(TElement::tag('td', ''));
         $tr->add(TElement::tag('td', $id));
         $tr->add(TElement::tag('td', $nome));
-        $tr->add(TElement::tag('td', $sucinto));
         $tr->add(TElement::tag('td', $minutos_realizacao));
         $tr->add(TElement::tag('td', $cor_primaria));
         $tr->add(TElement::tag('td', $cor_secundaria));
         $tr->add(TElement::tag('td', $usuario_responsavel));
-        $tr->add(TElement::tag('td', $is_publica));
+        // $tr->add(TElement::tag('td', $is_publica));
         $tr->add(TElement::tag('td', $inicio));
         $tr->add(TElement::tag('td', $fim));
 
         $this->datagrid_form->addField($id);
         $this->datagrid_form->addField($nome);
-        $this->datagrid_form->addField($sucinto);
         $this->datagrid_form->addField($minutos_realizacao);
         $this->datagrid_form->addField($cor_primaria);
         $this->datagrid_form->addField($cor_secundaria);
         $this->datagrid_form->addField($usuario_responsavel);
-        $this->datagrid_form->addField($is_publica);
+        // $this->datagrid_form->addField($is_publica);
         $this->datagrid_form->addField($inicio);
         $this->datagrid_form->addField($fim);
 
