@@ -104,6 +104,7 @@ class QuestaoAlunoView extends TPage
         if (!empty($param['value'])) 
         {
             $resposta->setValue($param['value']);
+            $resposta->setEditable(false);
         }
 
         $id->setValue($param['id']);
@@ -173,6 +174,7 @@ class QuestaoAlunoView extends TPage
         if (!empty($param['value'])) 
         {
             $alternativas->setValue(json_decode($param['value']));
+            $alternativas->setEditable(FALSE);
         }
 
         TTransaction::close();

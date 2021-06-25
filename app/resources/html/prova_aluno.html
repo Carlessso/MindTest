@@ -28,6 +28,17 @@
 <script type="text/javascript">
     var pressedKeys = [];
 
+    var cont = 1;
+
+    $(window).blur(function() {
+            if (cont == 1) {
+                alert('Seu professor será notificado!');
+                storeLogProva('Troca de aba');
+                cont--;
+                
+            }
+        }); 
+
     $(document.body).keydown(function (evt) {
         pressedKeys[evt.keyCode] = 'Down';
         console.log(pressedKeys);

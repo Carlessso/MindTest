@@ -16,7 +16,8 @@ class LogAlunoService
 
 			$log->descricao  = $param['descricao'];
 			// $log->usuario_id = TSession::getValue('userid');
-			$log->usuario_id = 1;
+			$log->usuario_id = TSession::getValue('userid');
+			$log->prova_id = TSession::getValue('prova_id');
 
 			$log->store();
 

@@ -17,6 +17,7 @@ class LogAlunoProva extends TRecord
         parent::addAttribute('descricao');
         parent::addAttribute('usuario_id');
         parent::addAttribute('data_operacao');
+        parent::addAttribute('prova_id');
     }
 
 }

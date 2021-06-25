@@ -91,7 +91,7 @@ class ProvasControleProfessorList extends TPage
 
         $this->datagrid->addAction($action_onEdit);
 
-        $action_onDelete = new TDataGridAction(array('UsuarioProvaHeaderList', 'onDelete'));
+        $action_onDelete = new TDataGridAction(array('WindowLogProva', 'onLoad'));
         $action_onDelete->setUseButton(false);
         $action_onDelete->setButtonClass('btn btn-default btn-sm');
         $action_onDelete->setLabel("Logs");
@@ -128,7 +128,7 @@ class ProvasControleProfessorList extends TPage
         $this->pageNavigation->setAction(new TAction(array($this, 'onReload')));
         $this->pageNavigation->setWidth($this->datagrid->getWidth());
 
-        $panel = new TPanelGroup("Listagem de usuario provas");
+        $panel = new TPanelGroup("Controle provas professor");
         $this->datagridPanel = $panel;
 
         $panel->addFooter($this->pageNavigation);
